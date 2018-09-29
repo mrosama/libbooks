@@ -1,0 +1,136 @@
+<div class="list-group font_deafult "style="direction: rtl">
+	<div id="spinner_loading" style="display: none"  >
+		<img src="template/public/images/g.gif">
+	</div>
+
+	<div ng-show="TPLMessage_CAPATCH">
+
+		<div style="direction: rtl" class="alert alert-warning fontClassAlert" role="alert">
+			{{ 'load.Message.UserCAPTCH' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR1">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG2' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR2">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG3' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR3">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKFILE' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR4">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG3' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+			{{ 'load.Message.NEWBOOKMSG1' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="formbookadd"    class="panel panel-default">
+		<div class="panel-heading">
+			{{ 'load.Website.ADDBOOK' | translate }}
+		</div>
+		<div class="panel-body">
+			<div style="width: 450px;">
+				<form  ng-submit="submitBOOK()" novalidate name="newbookForm" role="form" class="font_deafult">
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">{{ 'load.Website.NEWBOOKNAME' | translate }}</label>
+						<input type="text" ng-model="bookname" name="bookname" class="form-control" id="bookname" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.bookname.$dirty && newbookForm.bookname.$invalid"> <span ng-show="!newbookForm.bookname.$error.required">{{ 'load.Message.NEWBOOKNAME' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="bookdesc">{{ 'load.Website.NEWBOOKDESC' | translate }}</label>
+						<textarea ng-model="bookdesc" name="bookdesc" class="form-control" id="bookdesc" required="required"></textarea>
+						
+				
+ <span style="color:red" ng-show="newbookForm.bookdesc.$dirty && newbookForm.bookdesc.$invalid"> <span  style="color:red" ng-show="!newbookForm.bookdesc.$error.required">{{ 'load.Message.NEWBOOKDESC' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="author">{{ 'load.Website.NEWBOOKAUTHOR' | translate }}</label>
+						<input type="text" ng-model="author" name="author" class="form-control" id="author" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.author.$dirty && newbookForm.author.$invalid"> <span style="color:red" ng-show="!newbookForm.author.$error.required">{{ 'load.Message.NEWBOOKAUTHOR' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="authoremail">{{ 'load.Website.NEWBOOKEMAIL' | translate }}</label>
+						<input type="email" ng-model="authoremail" name="authoremail" class="form-control" id="authoremail" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.authoremail.$dirty && newbookForm.authoremail.$invalid"> <span ng-show="!newbookForm.authoremail.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span> <span ng-show="!newbookForm.authoremail.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="categoryv">{{ 'load.Website.NEWBOOKCAT' | translate }}</label>
+						<div   ng-html-compile="category" ></div>
+
+					</div>
+                    <br/>
+					<div class="form-group">
+
+						<label for="file1"> {{ 'load.Website.NEWBOOKFILE' | translate }} - {{ 'load.Website.FILEALLOW' | translate }} <span style="color:red"> ZIP - RAR</span> </label>
+						<input   type="file"  ng-model="file1" id="file1" name="file1"  onchange="angular.element(this).scope().setFile(this, 0)"  class="form-control"      >
+						<br/>
+						<button ng-click="clearFiles('file1','0')">
+							{{ 'load.Message.CLEARFILES' | translate }}
+						</button>
+
+					</div>
+                     <br/>
+					<div class="form-group">
+
+						<label for="file2"> {{ 'load.Website.NEWBOOKCOVER' | translate }} - {{ 'load.Website.FILEALLOW' | translate }} <span style="color:red">JPEG - GIF - PNG</span> </label>
+						<input   type="file"  ng-model="file2" id="file2" name="file2"  onchange="angular.element(this).scope().setFile(this, 1)"  class="form-control"      >
+						<br/>
+						<button ng-click="clearFiles('file2','1')">
+							{{ 'load.Message.CLEARFILES' | translate }}
+						</button>
+
+					</div>
+                      <br/>
+					<div class="form-group">
+						<label>{{ 'load.Website.REGCAPTCH' | translate }} </label>
+
+						<div style='-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;'
+						unselectable='on'
+						onselectstart='return false;'
+						onmousedown='return false;'  class="captch label label-primary">
+							{{captch}}
+						</div>
+						<input style="width: 200px;" type="text" name="captchinput" ng-model="captchinput" class="form-control col-xs-2" id="captchinput" required>
+
+						<span style="color:red" ng-show="!newbookForm.captchinput.$dirty && newbookForm.captchinput.$invalid"> <span ng-show="!newbookForm.captchinput.$error.required">{{ 'load.Website.UserCAPTCH' | translate }}</span>
+					</div>
+
+					<button type="submit" class="btn btn-info" ng-disabled="!newbookForm.$valid">
+						{{ 'load.Website.CONTACTBTN' | translate }}
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+

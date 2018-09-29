@@ -1,0 +1,596 @@
+<div header-admin></div>
+
+
+<div class="container-fluid">
+	 <div class="row">
+	 	     
+	 	      <div class="col-xs-6 col-md-10">
+	 	      		<div class="row">
+	 	      			
+	 	      			<div class="col-md-3"  >
+					<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+							خيارات مكتبة الكتب
+						</div>
+						<div class="panel-body" >
+							<ul class="font_deafult" style="line-height: 25px;">
+								<li>
+									<a href="book/cat">اقسام مكتبة الكتب    </a>
+								</li>
+								<li>
+									<a href="book/add">  كتاب جديد</a>
+								</li>
+								
+								<li>
+									<a href="book/list">قائمة الكتب</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				
+				<!-- //////////////////////////////// -->
+				
+					<div class="col-md-9" style="direction: rtl" >
+				
+				<!-- -->
+					<ol class="breadcrumb font_deafult">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="book/list">مكتبة الكتب</a>
+						</li>
+						
+						<li><a href="#">{{BreadTitle}}</a></li>
+						
+
+					</ol>
+					<!-- -->
+					
+					
+					
+						<div ng-switch on="urlparam"  >
+								<div ng-switch-default >
+									
+									<table id="testmme" ng-show="table1" class="table table-bordered table-striped font_deafult ">
+
+								<tr align="center" class="font_lastbook2">
+								 
+									
+									<td width="1%">  <span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="1%">مسلسل</td>
+									
+									
+									<td width="40%">الكتاب</td>
+
+									<td width="10%"> الحالة</td>
+									<td width="10%"> تعديل</td>
+									<td width="1%" class="" >
+									 <input type="checkbox" ng-model="ck" class="selecctall"
+									ng-change="updateSelection(ck)" />
+									 
+ 
+								 
+									</td>
+
+								</tr>
+
+								<tr    align="center" class="font_deafult"   dir-paginate="pages in datagride | itemsPerPage: 20: 'cust'" pagination-id="cust">
+								 
+									<td width="1%">
+					             <span class="glyphicon glyphicon-th-large"></span>
+
+									</td>
+									
+										<td width="1%">
+					           
+					            <span class="label label-primary" style="font-family: Tahoma"> {{pages.ID}}</span>
+
+									</td>
+									
+									<td width="40%">  {{pages.bookname|truncate:40}} 
+									 
+ 									</td>
+	                             <td width="1%">
+ 
+     	  <span ng-if="pages.active=='NO'"><img  title="غير مفعل" alt="غير مفعل"  ng-src="../template/dashboard/images/flag_red.png"></span>
+									
+					 <span ng-if="pages.active=='YES'"><img title="مفعل" alt="مفعل"  ng-src="../template/dashboard/images/flag_green.png"></span>
+
+ 
+									</td>
+                                <td width="1%">
+					             <a ng-href="book/edit/{{pages.ID}}"> <span class="glyphicon glyphicon-pencil"></span>
+
+									</td>
+
+ 									<td width="1%">
+									 <input type="checkbox" class="checkbox1" name="c[]" id="px_{{$index}}" value="{{pages.ID}}"  ng-model="op[pages.ID]"   /> 
+									 
+									</td>
+
+								</tr>
+
+								<footer>
+									<tr>
+										<td colspan="4" align="left">
+										
+									
+					<button ng-click="activeBook();" type="button" style="width: 200px" class="btn btn-success" >
+											تفعيل الكتب المختارة    
+										</button>					
+						<button ng-click="DeactiveBook();" type="button" style="width: 200px" class="btn btn-warning" >
+											إلغاء تفعيل الكتب المختارة    
+										</button>				
+										<button ng-click="deleteBook();" type="button" style="width: 200px" class="btn btn-danger" >
+											حذف    
+										</button>
+										
+										</td>
+									</tr>
+								</footer>
+
+							</table>
+
+							<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="../lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+	
+								
+									
+									
+									
+									
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+ <div ng-switch-when="add" ng-controller="BookController">
+							 	
+							 	
+ <div id="spinner_loading" style="display: none"  >
+		<img src="../template/public/images/g.gif">
+	</div>
+							 	
+							 	
+			<div ng-show="TPLMessage_CAPATCH">
+
+		<div style="direction: rtl" class="alert alert-warning fontClassAlert" role="alert">
+			{{ 'load.Message.UserCAPTCH' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR1">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG2' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR2">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG3' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR3">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKFILE' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR4">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG3' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+			{{ 'load.Message.NEWBOOKMSG1' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="formbookadd"    >
+ 
+			<div style="width: 450px;">
+				<form  ng-submit="submitBOOK()" novalidate name="newbookForm" role="form" class="font_deafult">
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">أسم الكتاب</label>
+						<input type="text" ng-model="bookname" name="bookname" class="form-control" id="bookname" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.bookname.$dirty && newbookForm.bookname.$invalid"> <span ng-show="!newbookForm.bookname.$error.required">{{ 'load.Message.NEWBOOKNAME' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="bookdesc">وصف الكتاب</label>
+						<textarea ng-model="bookdesc" name="bookdesc" class="form-control" id="bookdesc" required="required"></textarea>
+						
+				
+ <span style="color:red" ng-show="newbookForm.bookdesc.$dirty && newbookForm.bookdesc.$invalid"> <span  style="color:red" ng-show="!newbookForm.bookdesc.$error.required">{{ 'load.Message.NEWBOOKDESC' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="author">أسم المؤالف</label>
+						<input type="text" ng-model="author" name="author" class="form-control" id="author" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.author.$dirty && newbookForm.author.$invalid"> <span style="color:red" ng-show="!newbookForm.author.$error.required">{{ 'load.Message.NEWBOOKAUTHOR' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="authoremail">بريد المؤالف</label>
+						<input type="email" ng-model="authoremail" name="authoremail" class="form-control" id="authoremail" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.authoremail.$dirty && newbookForm.authoremail.$invalid"> <span ng-show="!newbookForm.authoremail.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span> <span ng-show="!newbookForm.authoremail.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="categoryv">يندرج تحت تصنيف</label>
+						<div   ng-html-compile="category" ></div>
+
+					</div>
+                    <br/>
+					<div class="form-group">
+
+						<label for="file1"> {{ 'load.Website.NEWBOOKFILE' | translate }} - {{ 'load.Website.FILEALLOW' | translate }} <span style="color:red"> ZIP - RAR</span> </label>
+						<input   type="file"  ng-model="file1" id="file1" name="file1"  onchange="angular.element(this).scope().setFile(this, 0)"  class="form-control"      >
+						<br/>
+						<button ng-click="clearFiles('file1','0')">
+							{{ 'load.Message.CLEARFILES' | translate }}
+						</button>
+
+					</div>
+                     <br/>
+					<div class="form-group">
+
+						<label for="file2"> {{ 'load.Website.NEWBOOKCOVER' | translate }} - {{ 'load.Website.FILEALLOW' | translate }} <span style="color:red">JPEG - GIF - PNG</span> </label>
+						<input   type="file"  ng-model="file2" id="file2" name="file2"  onchange="angular.element(this).scope().setFile(this, 1)"  class="form-control"      >
+						<br/>
+						<button ng-click="clearFiles('file2','1')">
+							{{ 'load.Message.CLEARFILES' | translate }}
+						</button>
+
+					</div>
+                
+
+					<button type="submit" class="btn btn-info" ng-disabled="!newbookForm.$valid">
+						{{ 'load.Website.CONTACTBTN' | translate }}
+					</button>
+				</form>
+		 
+		</div>
+	</div>
+				 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 </div>
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+							 
+							 <div ng-switch-when="edit" ng-controller="BookController">
+							 	
+											 	
+ <div id="spinner_loading" style="display: none"  >
+		<img src="../template/public/images/g.gif">
+	</div>
+							 	
+							 	
+			<div ng-show="TPLMessage_CAPATCH">
+
+		<div style="direction: rtl" class="alert alert-warning fontClassAlert" role="alert">
+			{{ 'load.Message.UserCAPTCH' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR1">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG2' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR2">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG3' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR3">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKFILE' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR4">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NEWBOOKMSG3' | translate }}
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+		 تم تعديل بيانات الكتاب
+		</div>
+	</div>
+
+	<div>
+ 
+			<div style="width: 450px;">
+				<form  ng-submit="EditBOOK()" novalidate name="newbookForm" role="form" class="font_deafult">
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">أسم الكتاب</label>
+						<input type="text" ng-model="bookname" name="bookname" class="form-control" id="bookname" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.bookname.$dirty && newbookForm.bookname.$invalid"> <span ng-show="!newbookForm.bookname.$error.required">{{ 'load.Message.NEWBOOKNAME' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="bookdesc">وصف الكتاب</label>
+						<textarea ng-model="bookdesc" name="bookdesc" class="form-control" id="bookdesc" required="required"></textarea>
+						
+				
+ <span style="color:red" ng-show="newbookForm.bookdesc.$dirty && newbookForm.bookdesc.$invalid"> <span  style="color:red" ng-show="!newbookForm.bookdesc.$error.required">{{ 'load.Message.NEWBOOKDESC' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="author">أسم المؤالف</label>
+						<input type="text" ng-model="author" name="author" class="form-control" id="author" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.author.$dirty && newbookForm.author.$invalid"> <span style="color:red" ng-show="!newbookForm.author.$error.required">{{ 'load.Message.NEWBOOKAUTHOR' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="authoremail">بريد المؤالف</label>
+						<input type="email" ng-model="authoremail" name="authoremail" class="form-control" id="authoremail" required="required"  >
+
+						<span style="color:red" ng-show="newbookForm.authoremail.$dirty && newbookForm.authoremail.$invalid"> <span ng-show="!newbookForm.authoremail.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span> <span ng-show="!newbookForm.authoremail.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+					</div>
+
+					<div class="form-group">
+						<label for="categoryv">يندرج تحت تصنيف</label>
+						<div   ng-html-compile="category" ></div>
+
+					</div>
+                    <br/>
+					<div class="form-group">
+
+						<label for="file1"> {{ 'load.Website.NEWBOOKFILE' | translate }} - {{ 'load.Website.FILEALLOW' | translate }} <span style="color:red"> ZIP - RAR</span> </label>
+						<input   type="file"  ng-model="file1" id="file1" name="file1"  onchange="angular.element(this).scope().setFile(this, 0)"  class="form-control"      >
+						<br/>
+						<button ng-click="clearFiles('file1','0')">
+							{{ 'load.Message.CLEARFILES' | translate }}
+						</button>
+
+					</div>
+                     <br/>
+					<div class="form-group">
+              						 <img  ng-src="../template/attach/upload/{{img}}">
+
+						<label for="file2"> {{ 'load.Website.NEWBOOKCOVER' | translate }} - {{ 'load.Website.FILEALLOW' | translate }} <span style="color:red">JPEG - GIF - PNG</span> </label>
+						<input   type="file"  ng-model="file2" id="file2" name="file2"  onchange="angular.element(this).scope().setFile(this, 1)"  class="form-control"      >
+						<br/>
+						
+						<button ng-click="clearFiles('file2','1')">
+							{{ 'load.Message.CLEARFILES' | translate }}
+						</button>
+
+					</div>
+                
+
+					<button type="submit" class="btn btn-info" ng-disabled="!newbookForm.$valid">
+						{{ 'load.Website.CONTACTBTN' | translate }}
+					</button>
+				</form>
+		 
+		</div>
+	</div>
+				 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+						 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 	
+							 </div>
+							 <div ng-switch-when="editcat" ng-controller="BookController">
+					
+							 	<div style="width:70%">
+		  <div ng-show="TPLMessage_ERROR">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			خطأ في تعديل القسم
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+ 		تم تعديل القسم بنجاح
+ 		</div>
+	</div>
+                   <form   novalidate name="cateditForm" role="form" class="font_deafult">
+                  	<div class="form-group">
+						<label for="authoremail">أسم القسم</label>
+						<input type="text" ng-model="namecat" name="namecat" class="form-control" id="namecat" required="required"  >
+ 					</div>
+                            <button style="width:200px" class="btn btn-info" ng-disabled="!cateditForm.$valid" class="btn btn-info" ng-click="UpdateCat();">تعديل القسم  </button>
+
+                   	
+                   	
+                  </form>
+
+
+
+							 	</div></div>
+							 		
+							 		
+							 		
+							 		
+							 		
+							 		
+							 		
+							 <div ng-switch-when="cat" ng-controller="BookController">
+					
+							 	<div style="width:70%">
+					
+							 <div ng-show="TPLMessage_ERROR2">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			  تم حذف القسم بنجاح      
+		</div>
+	</div>
+					
+							 		
+			 <div ng-show="TPLMessage_ERROR">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			خطأ في إضافة القسم
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+		 تم إضافة القسم بنجاح      
+		</div>
+	</div>
+							 		
+							 		
+	 <form   novalidate name="catForm" role="form" class="font_deafult">
+	 
+	 <div class="row">
+	 	
+	
+	 <div class="col-md-4">
+	 	
+	 	<table class="table">
+	 		<tr><td><button class="btn btn-danger" ng-click="deleteCat();">حذف القسم المختار</button></td></tr>
+	 			<tr><td> <button ng-click="editCat();" class="btn btn-warning">تعديل القسم المختار</button>	</td></tr>
+	 	</table>
+	 	
+					
+					  
+	           
+	</div>		
+	
+					
+					 	<div class="col-md-8">	
+	 		<div class="form-group">
+						<label for="categoryv">اختار القسم</label>
+						
+						<div   ng-html-compile="category" ></div>
+						</div>
+	 </div>
+					</div>
+					
+					
+					
+					
+                    <br/>	
+                    
+                    	<div class="form-group">
+						<label for="authoremail">أسم القسم</label>
+						<input type="text" ng-model="namecat" name="namecat" class="form-control" id="namecat" required="required"  >
+
+ 					</div>
+                    
+                <button style="width: 300px;" ng-click="AddCAT();" ng-disabled="!catForm.$valid" class="btn btn-info">  حفظ البيانات</button>    	 	
+							 	</form>
+							 	</div>
+							 </div>
+						</div>	
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+	 	      			
+	 	      			
+	 	      		</div>	
+	 	      		
+	 	      		
+	 	      		<!-- -->	
+	 	      		</div>
+	 	      		
+	 	      </div>
+	 	
+	 		
+   		<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+	 	</div>
+
+</div>

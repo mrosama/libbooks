@@ -1,0 +1,18 @@
+
+<div  ng-show="TPLPAGE">
+
+	<div id="defaultPage" style="direction: rtl">
+		<h1 class="font_header">{{Page.Title}}</h1>
+		<hr/>
+		<p class="fontClassC" ng-bind-html="myHTML=Page.Body">
+			
+		</p>
+	</div>
+
+	<hr/>
+</div>
+
+<div ng-show="TPLMessage">
+ 
+	<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">{{ 'load.Message.PAGENOTFOUND' | translate }}</div>
+</div>

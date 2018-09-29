@@ -1,0 +1,360 @@
+ <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" media="all" />
+ 
+ 
+<div header-admin></div>
+
+<div class="container-fluid"  >
+	
+<div class="row">
+	
+	<div class="col-xs-6 col-md-10">
+		<div class="row">
+				<div class="col-md-3"  >
+					<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+						     خيارات ألاعلانات
+						</div>
+						<div class="panel-body" >
+							<ul class="font_deafult" style="line-height: 25px;">
+								<li>
+									<a href="adv/add">إعلان جديد </a>
+								</li>
+								<li>
+									<a href="adv/list">  قائمة ألاعلانات</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<!-- -->
+			
+			<div class="col-md-9" style="direction: rtl" >
+				
+					<!-- -->
+					<ol class="breadcrumb font_deafult">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="adv/list"> ألاعلانات</a>
+						</li>
+						
+						<li><a href="#">{{BreadTitle}}</a></li>
+						
+
+					</ol>
+					<!-- -->
+				
+				<div ng-switch on="urlparam"  >
+					
+					<div ng-switch-default >
+					
+						<table id="testmme" ng-show="table1" class="table table-bordered table-striped font_deafult ">
+
+								<tr align="center" class="font_lastbook2">
+								 
+									
+									<td width="1%">  <span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="1%">مسلسل</td>
+									
+									
+									<td width="40%">السؤال</td>
+
+									<td width="10%"> الحالة</td>
+									<td width="10%"> تعديل</td>
+									<td width="1%" class="" >
+									 <input type="checkbox" ng-model="ck" class="selecctall"
+									ng-change="updateSelection(ck)" />
+									 
+ 
+								 
+									</td>
+
+								</tr>
+
+								<tr    align="center" class="font_deafult"   dir-paginate="pages in datagride | itemsPerPage: 20: 'cust'" pagination-id="cust">
+								 
+									<td width="1%">
+					             <span class="glyphicon glyphicon-th-large"></span>
+
+									</td>
+									
+										<td width="1%">
+					            <span class="label label-default"> {{pages.ID}}</span>
+
+									</td>
+									
+									<td width="40%">  {{pages.name|truncate:40}} 
+									 
+ 									</td>
+	                             <td width="1%">
+ 
+     		  <a href="#" ng-click="preview(pages.img);">    <span class="glyphicon glyphicon-eye-open"></span></a>
+
+ 
+ 
+									</td>
+                                <td width="1%">
+					             <a ng-href="adv/edit/{{pages.ID}}"> <span class="glyphicon glyphicon-pencil"></span>
+
+									</td>
+
+ 									<td width="1%">
+									 <input type="checkbox" class="checkbox1" name="c[]" id="px_{{$index}}" value="{{pages.ID}}"  ng-model="op[pages.ID]"   /> 
+									 
+									</td>
+
+								</tr>
+
+								<footer>
+									<tr>
+										<td colspan="4" align="left">
+										<button ng-click="deletePage();" type="button" style="width: 300px" class="btn btn-danger" >
+											حذف    
+										</button></td>
+									</tr>
+								</footer>
+
+							</table>
+
+							<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="../lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+	
+						
+						
+						
+					</div>
+					
+					
+					
+					
+					 <div ng-switch-when="add" ng-controller="AdvController">
+
+
+	<div id="spinner_loading" style="display: none"  >
+		<img src="../template/public/images/g.gif">
+	</div>
+
+
+	<div ng-show="TPLMessage_ERROR1">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			خطأ في إضافة الاعلان
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR2">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			ملف ألاعلان مفقود
+		</div>
+	</div>
+
+	<div ng-show="TPLMessage_ERROR3">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			من فضلك اختار صورة لملف ألاعلان
+		</div>
+	</div>
+
+	 
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+			 تم إضافة ألاعلان بنجاح
+		</div>
+	</div>
+
+
+   <form  ng-show="formbookadd"  class="font_deafult" style="width: 80%" role="form" id="pageForm" name="pageForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">  اسم ألاعلان</label>
+    <input type="text"  ng-model="advname"    class="form-control"     required="required">
+  </div>
+  
+    <div class="form-group">
+    <label for="exampleInputEmail1">  رابط  ألاعلان</label>
+    <input type="text"  ng-model="advlink"    class="form-control"    required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">قسم ألاعلان</label>
+    
+    <select ng-model="cat" class="form-control" required="required">
+    	<option value="RIGHT">RIGHT</option>
+    		<option value="LEFT">LEFT</option>
+    </select>
+  </div>
+  
+  
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">  صورة ألاعلان </label>
+    	<input   type="file"  ng-model="file1" id="file1" name="file1"  onchange="angular.element(this).scope().setFile(this, 0)"  class="form-control"      >
+  <br/>
+						 
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1"> ارتفاع ألاعلان</label>
+    <input type="text" style="width:100px"  ng-model="advheight"    class="form-control"    required="required">
+  </div>
+  
+    <div class="form-group">
+    <label for="exampleInputEmail1"> عرض ألاعلان</label>
+    <input type="text" style="width:100px"  ng-model="advwidth"    class="form-control"    required="required">
+  </div>
+   
+   
+ <div align="center"  >
+<button ng-click="SendAdvert();" style=" width: 400px;" type="button" class="btn btn-info" ng-disabled="!pageForm.$valid"> إرسال</button>
+</div>
+</form>
+   	  				
+
+
+                      </div>
+					
+
+
+
+  <div ng-switch-when="edit" ng-controller="AdvController">
+					 	
+					 
+	
+	<div id="spinner_loading" style="display: none"  >
+		<img src="../template/public/images/g.gif">
+	</div>
+
+
+	<div ng-show="TPLMessage_ERROR1">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			خطأ في إضافة الاعلان
+		</div>
+	</div>
+
+ 
+
+	<div ng-show="TPLMessage_ERROR3">
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			من فضلك اختار صورة لملف ألاعلان
+		</div>
+	</div>
+
+	 
+
+	<div ng-show="TPLMessage_success">
+
+		<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+			 تم تعديل ألاعلان بنجاح
+		</div>
+	</div>
+
+
+   <form    class="font_deafult" style="width: 80%" role="form" id="pageForm" name="pageForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">  اسم ألاعلان</label>
+    <input type="text"  ng-model="advname"    class="form-control"     required="required">
+  </div>
+  
+    <div class="form-group">
+    <label for="exampleInputEmail1">  رابط  ألاعلان</label>
+    <input type="text"  ng-model="advlink"    class="form-control"    required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">قسم ألاعلان</label>
+    
+    <select ng-model="cat" class="form-control" required="required">
+    	<option value="RIGHT">RIGHT</option>
+    		<option value="LEFT">LEFT</option>
+    </select>
+  </div>
+  
+  
+  
+  <div class="form-group">
+    <label for="exampleInputPassword1">  صورة ألاعلان </label>
+      <a href="#" ng-click="preview(imgadvert);">    معاينة ألاعلان المسجل  <span class="glyphicon glyphicon-eye-open"></span></a> 
+
+    	<input   type="file"  ng-model="file1" id="file1" name="file1"  onchange="angular.element(this).scope().setFile(this, 0)"  class="form-control"      >
+  <br/>
+						 
+  </div>
+  
+  
+  <div class="form-group">
+    <label for="exampleInputEmail1"> ارتفاع ألاعلان</label>
+    <input type="text" style="width:100px"  ng-model="advheight"    class="form-control"    required="required">
+  </div>
+  
+    <div class="form-group">
+    <label for="exampleInputEmail1"> عرض ألاعلان</label>
+    <input type="text" style="width:100px"  ng-model="advwidth"    class="form-control"    required="required">
+  </div>
+   
+   <input type="hidden" ng-model="imgadvert" />
+   
+ <div align="center"  >
+<button ng-click="EditAdvert();" style=" width: 400px;" type="button" class="btn btn-info" ng-disabled="!pageForm.$valid"> إرسال</button>
+</div>
+</form>
+   	  					 	
+					 	
+					 	
+					 	
+					 	
+					 	
+					 	
+					 	
+					 	
+ </div>
+					
+					
+					
+					
+					</div>
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</div>
+		
+	</div>
+	
+	
+	<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+
+	
+</div>
+
+</div>

@@ -1,0 +1,121 @@
+{
+"load" : {
+  "Website" : {
+    "DIR" :"rtl",
+    "HOMEPAGE" : "الصفحة الرئيسية",
+    "LIBBOOK" : "مكتبة الكتب ",
+    "ADDBOOK" : "أضف كتاب",
+    "WEBLINKS": "مواقع مميزة ",
+    "REGISTER": "سجل معنا",
+     "EMAILME": " راسلنا",
+    "HOME" :"الرئيسية",
+    "ABOUTUS" :"عن الموقع",
+    "ADVERTUS" :" أعلن معنا  ",
+    "HELPCORNER" :"ركن المساعدة",
+    "QA" :"سؤال وجواب",
+    "OWNER" :"كلمة المدير",
+    "MOKTANYAT" :"مقتنيات",
+    "EMP" :"المدير والموظفون",
+    "PLAN" :"الخطة السنوية",
+    "DONORS" :"المتبرعون",
+    "INSTRUCTION" :"التعليمات",
+    "SEARCH" :"بحث",
+    "ADV" :"إعلانات",
+    "MEMBERLOGIN" :"دخول ألاعضاء",
+    "EMAIL" :"البريد ألالكتروني",
+    "PASS" :"كلمة المرور",
+    "CPASS" :" تأكيد كلمة المرور",
+    "SEND" :"إرسال",
+    "LASTBOOKS" :"الكتب المضافة حديثا",
+    "CART" :"سلة التسوق",
+    "POLL" :"تصويت",
+    "GOALBOOK" :"أهداف المكتبة ووظائفها",
+    "REGBUTTON" :"  سجل البيانات",
+    "REGCOUNTRY" :"   الدولة  ",
+    "REGGENDER" :"  الجنس  ",
+    "REGMAIL" :"  ذكر",
+    "REGFMAEL" :"   أنثي  ",
+    "REGFAV" :"  مجالات ألاهتمام    ",
+    "REGFAVIT" :"  تقنية معلومات   ",
+    "REGFAVADB" :"  أدبي    ",
+    "REGFAVPOLIC" :"  سياسي    ",
+    "REGFAVHIST" :"   تاريخ",
+    "REGFAVSEC" :"   علوم",
+    "REGCAPTCH" :"  رمز التحقق",
+    "REGUSERS" :"  تسجيل عضوية ",
+    "CONTACTNAME" :" اسم المرسل  ",
+    "CONTACTEMAIL" :" بريد المرسل  ",
+    "CONTACTTITLE" :" عنوان الرسالة  ",
+    "CONTACTMSG" :"  نص الرسالة ",
+    "CONTACTBTN" :" إرسال ",
+    "LOGINWELCOME" : " مرحبا",
+    "LOGINLOGOUT" : "تسجيل خروج", 
+    "LOGINHOMEPAGE" : "الصفحة الشخصية",     
+    "PROFILEEDIT" : " تعديل البيانات الشخصية",
+    "NEWBOOKNAME" :"أسم الكتاب",
+    "NEWBOOKDESC":"وصف الكتاب",
+    "NEWBOOKAUTHOR":"أسم المؤالف",
+    "NEWBOOKEMAIL":"بريد المؤالف",
+    "NEWBOOKCAT":"يندرج تحت تصنيف",
+    "NEWBOOKFILE":"اختار الملف من جهازك للتحميل",
+    "NEWBOOKCOVER":"صورة الغلاف",
+     "FILEALLOW":" الملفات المسموح بها",
+     "LASTBOOK" : "الكتب المضافة حديثا",
+     "ICover" : "غلاف الكتاب",
+     "ISIZE" :"حجم الكتاب",
+     "IDATE" :" تاريخ الاضافة ",
+     "IDownload" : "تحميل الملف",
+     "INoCover": "لا يوجد غلاف",
+     "SEARCHFOR" : "بحث عن"
+     
+     
+    
+    
+          
+     
+    
+    
+ 
+    
+  },
+  "Admin" : {
+    "TITLE" : "How to use lazzy loading without autoupload?",
+    "HEADER" : "You can predefine a default language while still using a lazzy loading.",
+    "SUBHEADER" : "This way module will not load a default language from server once more."
+  },
+  "Message" : {
+    "PAGENOTFOUND" : "عذرا تلك الصفحة غير موجودة",
+    "UserCAPTCH" : " كود التحقق غير صحيح",
+    "USERREGISTEROK" : " تم تسجيل بياناتك بنجاح ..شكرا لك علي إستخدامك موقعنا",
+    "USEREMAILERROR" : "  البريد ألالكتروني مفقود او غير صحيح ",
+    "USERPASSMIS" : "  كلمة المرور مفقودة ",
+    "USERCPASSCONFIRM" : "   كلمة المرور لا تساوي تأكيد كلمة المرور",
+    "USERCPASSMIS" : " تأكيد كلمة المرور مفقودة ",
+    "USEREMAILFOUND" : "البريد الالكتروني مسجل من قبل",
+    "CONTACTMISNAME": "أسم المرسل مفقود",
+    "CONTACTMISTITLE": "عنوان الرسالة مفقودة",
+    "CONTACTMISMSG": "الرسالة مفقودة",
+    "CONTACTOK": "تم إرسال الرسالة بنجاح سوف يتم الرد عليك في اقرب وقت",
+    "CONTACTERROR": "فشل في ألارسال ..حاول الارسال  في وقت لاحق",
+    "LOGINERROR" : "خطأ في أسم المستخدم او البريد ",
+    "LOGINMESSAGE" : "يجب عليك تسجيل الدخول لمشاهدة الصفحة",
+    "PROFILEEDIT" :"تم تعديل البيانات بنجاح",
+    "PROFILEERROR" : "فشل في تعديل البيانات",
+    "NEWBOOKNAME":"أسم الكاتب مفقود",
+    "NEWBOOKAUTHOR":"أسم المؤلف مفقود",
+    "NEWBOOKDESC":"وصف الكتاب مفقود",
+    "NEWBOOKCAT":"التصنيف مفقود",
+    "NEWBOOKFILE":"ملف الكتاب مفقود",
+    "NEWBOOKMSG1":" تم تحميل الكتاب بنجاح..سوف يتم النشر عقب مراجعة إدارة الموقع",
+    "NEWBOOKMSG2":"فشل في تحميل الكتاب ..من فضلك حاول مرة اخري",
+    "NEWBOOKMSG3":" نوع الملف غير مسموح بة ",
+    "CLEARFILES" : " إلغاء أختيار الملف",
+    "NOBOOKFOUND" : " لا توجد كتب مسجلة بهذا القسم",
+    "NORESULTFOUND" : "نأسف لعدم وجود نتائج"
+    
+     
+    
+    
+  }
+}
+}

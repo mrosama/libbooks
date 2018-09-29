@@ -1,0 +1,223 @@
+<div header-admin></div>
+
+<div class="container-fluid">
+	
+   <div class="row">
+   	
+   	
+   	   <div class="col-xs-6 col-md-10">
+   	   	
+   	   		<div class="row">
+   	   			
+   	   				<div class="col-md-3"  >
+					<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+							خيارات دليل المواقع
+						</div>
+						<div class="panel-body" >
+							<ul class="font_deafult" style="line-height: 25px;">
+								<li>
+									<a href="links/add">إضافة موقع جديدة</a>
+								</li>
+								<li>
+									<a href="links/list">دليل المواقع</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				
+				<!-- //////////////////////////////// -->
+				
+			<div class="col-md-9" style="direction: rtl" >
+				
+				<!-- -->
+					<ol class="breadcrumb font_deafult">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="links/list">دليل المواقع</a>
+						</li>
+						
+						<li><a href="#">{{BreadTitle}}</a></li>
+						
+
+					</ol>
+					<!-- -->
+				<div ng-switch on="urlparam">
+					<div ng-switch-default>
+						<div ng-show="TPLMessage_ERROR1">
+								<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+									لا توجد مواقع  مسجلة
+								</div>
+							</div>
+						
+						
+						<table id="testmme" ng-show="table1" class="table table-bordered table-striped font_deafult ">
+
+								<tr align="center" class="font_lastbook2">
+									<td width="1%"><span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="40%"> أسم الموقع </td>
+
+									<td width="10%">رابط الموقع</td>
+									<td width="1%" class="" >
+									 <input type="checkbox" ng-model="ck" class="selecctall"
+									ng-change="updateSelection(ck)" />
+									 
+ 
+								 
+									</td>
+
+								</tr>
+
+								<tr align="center" class="font_deafult"   dir-paginate="pages in datagride | itemsPerPage: 20: 'cust'" pagination-id="cust">
+									<td width="1%"><span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="40%"> {{pages.website_name}}</td>
+
+									<td width="10%"><a target="_blank" ng-href="{{pages.website_link}}">     <span class="glyphicon glyphicon-globe"></span></td>
+									<td width="1%">
+									 <input type="checkbox" class="checkbox1" name="c[]" id="px_{{$index}}" value="{{pages.ID}}"  ng-model="op[pages.ID]"   /> 
+									 
+									</td>
+
+								</tr>
+
+								<footer>
+									<tr>
+										<td colspan="4" align="left">
+										<button ng-click="deletePage();" type="button" style="width: 300px" class="btn btn-danger" >
+											حذف المواقع المختارة
+										</button></td>
+									</tr>
+								</footer>
+
+							</table>
+
+							<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="../lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					</div>
+					
+					
+					
+					<div ng-switch-when="add">
+							<div ng-controller="LinksController">
+								
+								<div ng-show="TPLMessage_success">
+
+									<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+										تم إضافة الموقع
+									</div>
+								</div>
+
+								<div ng-show="TPLMessage_ERROR1">
+									<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+										خطأ في إضافة الموقع...من فضلك حاول في وقت لاحق
+									</div>
+								</div>
+								
+								
+								
+						<form role="form" class="font_deafult" style="width: 80%"   name="pageForm" >
+									<div class="form-group">
+										<label for="title">أسم الموقع</label>
+										<input required="required" type="text" ng-model="website_name" class="form-control" id="title" placeholder="   ">
+									</div>
+
+									<div class="form-group">
+										<label for="tinymceModel">  رابط الموقع</label>
+ 										
+    										<input required="required" type="text" ng-model="website_link" class="form-control" id="title" placeholder="     ">
+
+
+									</div>
+
+									<div align="center">
+										<button type="button" ng-click="AddSite();" style="width: 300px" class="btn btn-info" ng-disabled="!pageForm.$valid">
+											حفظ البيانات
+										</button>
+									</div>
+								</form>		
+								
+								
+								
+								
+								
+								</div>
+						
+						
+					</div>
+					
+					</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>	
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+   	   			
+   	   			
+   	   			
+   	   			</div>
+   	   	
+   	   	
+   	   	
+   	   	
+   	   </div>
+   	
+   	
+   		<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+   	
+   	
+   	
+   	
+   </div>
+   
+   
+
+
+</div>

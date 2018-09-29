@@ -1,0 +1,26 @@
+<meta charset="UTF-8" />
+
+<div id="defaultPage" style="direction: rtl">
+	<h1 class="font_header"> {{ 'load.Website.WEBLINKS' | translate }}  </h1>
+	<hr/>
+
+<div style="margin: 0 auto">
+ 
+
+<table class="table table-bordered font_deafult ">
+	
+  <tr  dir-paginate="x in names | itemsPerPage: 20: 'cust'" pagination-id="cust">
+  
+    <td   width="2%"><span class="glyphicon glyphicon-globe"></span></td>	
+  	<td><a target="_blank" href="{{ x.website_link }}">{{ x.website_name }}</a></td>
+  
+  </tr>
+	
+
+  
+</table>
+
+ 
+
+<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+</div>

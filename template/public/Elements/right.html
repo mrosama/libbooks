@@ -1,0 +1,43 @@
+ 			<div class="list-group font_deafult " style="text-align: center">
+  <a href="#" class="list-group-item disabled">
+    {{ 'load.Website.HOME' | translate }} 
+  </a>
+  <a href="page/1" class="list-group-item">{{ 'load.Website.ABOUTUS' | translate }} </a>
+  <a href="page/2" class="list-group-item"> {{ 'load.Website.ADVERTUS' | translate }} </a>
+  <a href="page/3" class="list-group-item">{{ 'load.Website.HELPCORNER' | translate }}</a>
+  <a href="page/4" class="list-group-item">{{ 'load.Website.QA' | translate }}</a>
+  <a href="page/5" class="list-group-item">  {{ 'load.Website.OWNER' | translate }}   </a>
+  <a href="page/6" class="list-group-item">{{ 'load.Website.MOKTANYAT' | translate }}</a>
+  <a href="page/7" class="list-group-item"> {{ 'load.Website.EMP' | translate }}</a>
+  <a href="page/8" class="list-group-item">  {{ 'load.Website.PLAN' | translate }} </a>
+  <a href="page/9" class="list-group-item">   {{ 'load.Website.DONORS' | translate }} </a>
+  <a href="page/10" class="list-group-item">   {{ 'load.Website.INSTRUCTION' | translate }} </a>
+</div>
+ 			
+ 		<!-- //end -->	
+ 		
+ 		
+ 		
+ 		<div class="panel panel-info font_deafult" style="text-align: center">
+  <div class="panel-heading"> {{ 'load.Website.SEARCH' | translate }}  </div>
+  <div class="panel-body">
+     <form  name="searchForm"  role="form" ng-controller="SearchController">
+     	 <div class="form-group">
+     <input type="text" ng-model="q" name="q" class="form-control" required="required"   placeholder="بحث هنا.">
+ 
+  </div>
+   <button type="button" ng-disabled="!searchForm.$valid" ng-click="searchbook();" class="btn btn-primary font_deafult">  {{ 'load.Website.SEARCH' | translate }}  </button>
+     	</form>
+  </div>
+  </div>
+ 	
+ 	<!-- ==================================================== -->	
+ 		
+<div class="panel panel-info font_deafult" style="text-align: center">
+  <div class="panel-heading">  {{ 'load.Website.ADV' | translate }}  </div>
+  <div class="panel-body">
+     <div ng-controller="AdvController" ng-bind-html="ADV_RIGHT">
+     	<div align="center">{{Advert_Right("RIGHT")}}</div>
+     	</div>
+  </div>
+</div> 		

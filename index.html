@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" ng-app="BookApp">
+	<head>
+		<meta charset="utf-8" />
+		<base href="/preview/books/" >
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all" />
+
+		<link href="css/bootstrap/normalize.css" rel="stylesheet" media="screen"/>
+
+		<link   rel="stylesheet" href="css/bootstrap/fontadmin.css?version=0.1" type="text/css" charset="utf-8" />
+
+		<link   rel="stylesheet" href="css/bootstrap/style_en.css?version=0.1" type="text/css" charset="utf-8" />
+		<link   rel="stylesheet" href="css/animations.css?version=0.1" type="text/css" charset="utf-8" />
+
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- include all Script library -->
+	
+		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular/angular-route.min.js"></script>
+		<script src="lib/angular/angular-animate.min.js"></script>
+		<script src="lib/angular/angular-sanitize.min.js"></script>
+
+		<script src="lib/angular-translate.min.js"></script>
+		<script src="lib/angular-cookies.min.js"></script>
+		<script src="lib/loader-static-files.js"></script>
+       
+       <script src="lib/pagination/dirPagination.js"></script>
+       <script src="lib/ngHtmlCompile.js"></script>
+       <script src="lib/filters.js"></script>
+       <script src="lib/angular-timer.min.js"></script>
+       
+	  	<script src="api/app.js"></script>
+	  	<script src="api/routing/site_route.js"></script>
+		<script src="api/services/services.js"></script>
+			 
+		         <script src="api/controllers/public/MainController.js"></script>
+		         <script src="api/controllers/public/LinksController.js"></script>
+			     <script src="api/controllers/public/PageController.js"></script>
+			     <script src="api/controllers/public/UserController.js"></script>
+		         <script src="api/controllers/public/ContactController.js"></script>
+			     <script src="api/controllers/public/AdvController.js"></script>
+				 <script src="api/controllers/public/PollController.js"></script>
+			     <script src="api/controllers/public/AuthController.js"></script>
+			     <script src="api/controllers/public/LibraryController.js"></script>
+			     <script src="api/controllers/public/ListController.js"></script>
+			     <script src="api/controllers/public/SearchController.js"></script>
+			     
+		<script src="api/directives/header_directive.js"></script>
+		<script src="api/directives/right_directive.js"></script>
+		<script src="api/directives/left_directive.js"></script>
+		 <script src="api/directives/Compile.js"></script> 
+	
+		<script src="css/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+	</head>
+
+	<body>
+<noscript>
+    You must have JavaScript enabled to use this app.
+</noscript>
+		<div header-Tpl></div>
+
+		<div class="container-fluid">
+
+			<div class="row">
+
+				<div class="col-xs-6 col-md-2"  >
+					<!-- begin -->
+
+					<div left-Tpl></div>
+
+					<!-- end -->
+				</div>
+
+				<!--center -->
+				<div class="col-xs-6 col-md-8">
+					<div ng-view class="view-slide-in"></div>
+				</div>
+				<!--//center -->
+				<div class="col-xs-6 col-md-2">
+					<!-- //begin -->
+
+					<div right-Tpl></div>
+
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer>
+
+			<p>
+				&copy; Osama_eg@outlook.com 2016/2017
+			</p>
+		</footer>
+
+	</body>
+</html>

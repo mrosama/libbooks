@@ -1,0 +1,173 @@
+<div header-admin></div>
+
+
+<div class="container-fluid">
+
+	<div class="row">
+		<!--center -->
+		<div class="col-xs-6 col-md-10">
+			
+			<div class="col-md-12" style="direction: rtl" >
+					<!-- -->
+					<ol class="breadcrumb font_deafult" style="direction: rtl">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="option">إعدادت الموقع</a>
+						</li>
+						
+					 
+						
+
+					</ol>
+					
+					
+<div class="col-md-4"  >
+					<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+							إعدادات البريد
+						</div>
+						<div class="panel-body" >
+							 <form>
+							<div class="form-group">
+										<label for="title">خادم البريد الالكتروني</label>
+									    	<select ng-model="mail_server" style="font-family: Tahoma" class="form-control">
+									    		<option value="mail">Mail</option>
+									    		<option value="sendmail">Sendmail</option>
+									    		<option value="smtp">Smtp</option>
+											</select>
+ 									</div>
+							
+							
+								<div class="form-group">
+										<label for="title"> بريد إستقبال الرسائل</label>
+	 <input required="required" type="text" ng-model="email_received" class="form-control" id="title"  >
+
+ 									</div>
+ 									
+ 									
+ 										<div class="form-group">
+										<label for="title"> خادم إرسال البريد</label>
+	 <input required="required" type="text" ng-model="mail_smtp" class="form-control" id="title"  >
+
+ 									</div>
+							
+									<div class="form-group">
+										<label for="title">     أسم الراسل   </label>
+	 <input required="required" type="text" ng-model="mail_sender" class="form-control" id="title"  >
+
+ 									</div>
+							
+							
+							
+							
+							     	<div class="form-group">
+										<label for="title"> مستخدم - <span style="font-family: Tahoma">[SMTP] </span></label>
+	 <input required="required" type="text" ng-model="mail_user" class="form-control" id="title"  >
+
+ 									</div>
+ 									
+ 								 
+ 									
+ 									<div class="form-group">
+										<label for="title"> كلمة المرور - <span style="font-family: Tahoma">[SMTP] </span></label>
+	 <input required="required" type="password" ng-model="mail_pwd" class="form-control" id="title"  >
+
+ 									</div>
+ 									
+ 									<div class="form-group">
+										<label for="title"> منفذ - <span style="font-family: Tahoma">[SMTP] </span></label>
+	 <input required="required" type="text" ng-model="mail_port" class="form-control" id="title"  >
+
+ 									</div>
+							
+							
+								<div class="form-group">
+										<label for="title"> مسار - <span style="font-family: Tahoma">[SendMail] </span></label>
+	 <input required="required" type="text" ng-model="mail_sendmail" class="form-control" id="title"  >
+
+ 									</div>
+							
+								<div class="form-group">
+										<label for="title"> تنسيق الرسائل  </label>
+									    	<select class="form-control" ng-model="mail_type">
+									    		 
+									    		<option value="html">html</option>
+									    		
+									    		<option value="text">text</option>
+											</select>
+ 									</div>
+							
+							
+							<div class="form-group">
+										<label for="title">نظام التشفير</label>
+									    	<select class="form-control" ng-model="mail_encryption">
+									    		<option value="none">لا يوجد تشفير</option>
+									    		<option value="tls">tls</option>
+									    		
+									    		<option value="ssl">ssl</option>
+											</select>
+ 									</div>
+							
+							<div class="form-group" align="center">
+					<button ng-click="addOptionEmail();" style="width: 300px"  class="btn btn-danger" >حفظ إعدادات البريد</button>			
+								
+								</div>
+							 	
+							 	</form>
+						</div>
+					</div>
+
+				</div>
+					<br/>
+					
+						<div ng-show="TPLMessage_success" style="width: 60%">
+                                   <div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+										    تم تحديث البيانات    
+									</div>
+								</div>
+						<form role="form" class="font_deafult" style="width: 60%"   name="pageForm" >
+									<div class="form-group">
+										<label for="title">عنوان رسالة الترحيب</label>
+										<input required="required" type="text" ng-model="msg_title" class="form-control" id="title" placeholder="  عنوان الصفحة هنا ">
+									</div>
+
+                                  	<div class="form-group">
+										<label for="tinymceModel">محتوي رسالة الرتحيب</label>
+										<textarea required="required" style="direction: ltr" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="tinymceModel" id="tinymceModel"></textarea>
+                                      </div>
+                                      
+                                      
+                                      
+
+									<div align="center">
+										<button type="button" ng-click="AddOption();" style="width: 300px" class="btn btn-info" ng-disabled="!pageForm.$valid">
+											حفظ البيانات
+										</button>
+									</div>
+								</form>
+					
+					
+					
+                          	</div>
+			
+			
+			
+			</div>
+			
+			
+			
+			
+				<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+			
+			
+			</div>
+
+</div>

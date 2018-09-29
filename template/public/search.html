@@ -1,0 +1,72 @@
+<div class="list-group font_deafult "style="direction: rtl" ng-cloak>
+	
+
+<div   class="panel panel-default">
+  <div class="panel-heading"> {{ 'load.Website.SEARCHFOR' | translate }} &nbsp;  [<span style="color: red">{{q}}  </span>] </div>
+  <div class="panel-body">
+  	
+  	 <div ng-show="TPLMessage_ERROR">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NORESULTFOUND' | translate }}
+		</div>
+	</div>
+  	
+  	<!-- ///////////////////////////////// -->
+  	
+  	
+  	 
+<div class="row"  >
+	
+	
+<div style="margin: 0 auto" ng-show="viewbook" >
+ 
+
+<table class="table table-bordered table-striped font_deafult ">
+	
+	<tr align="center" class="font_lastbook2">
+		<td>#</td>
+		<td width="40%">{{ 'load.Website.NEWBOOKNAME' | translate }}  </td>
+	<td width="30%">{{ 'load.Website.NEWBOOKAUTHOR' | translate }}</td>
+		<td width="10%">{{ 'load.Website.ISIZE' | translate }}</td>
+		<td width="30%">{{ 'load.Website.IDATE' | translate }}</td>
+		
+	</tr>
+	
+	
+  <tr class="font_table"  dir-paginate="nlist in gridbook | itemsPerPage: 20: 'cust'" pagination-id="cust">
+     <td   width="2%"><span class="glyphicon glyphicon-book"></span></td>	
+  <td><a   ng-href="view/{{nlist.cat}}/{{nlist.ID}}">{{nlist.bookname}}</a></td>
+  <td> {{nlist.author}}</td>
+  <td>{{nlist.size}}</a></td>
+  <td>{{nlist.dat}}</a></td>
+
+  
+  </tr>
+	
+
+  
+</table>
+
+ 
+
+<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+	
+	
+</div>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
+  </div></div>
+
+
+
+
+
+
+</div>

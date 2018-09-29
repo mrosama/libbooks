@@ -1,0 +1,292 @@
+<div header-admin></div>
+
+
+<link rel="stylesheet" href="../lib/ngdialog/css/ngDialog.css">
+	<link rel="stylesheet" href="../lib/ngdialog/css/ngDialog-theme-default.css">
+	<link rel="stylesheet" href="../lib/ngdialog/css/ngDialog-theme-plain.css">
+  <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet" media="all" />
+
+<div class="container-fluid" ng-controller="InboxController">
+	
+   <div class="row">
+   	
+   	  <div class="col-xs-6 col-md-10">
+   	  	
+   	  		<div class="row">
+   	  					<div class="col-md-3"  >
+					<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+						خيارات صندوق البريد
+						</div>
+						<div class="panel-body" >
+							<ul class="font_deafult" style="line-height: 25px;">
+								<li>
+									<a href="inbox/add">رسالة جديدة</a>
+								</li>
+								<li>
+									<a href="inbox/list">صندوق الرسائل</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				
+				<!-- -->
+   	  			<div class="col-md-9" style="direction: rtl" >
+   	  				
+   	  				<!-- -->
+					<ol class="breadcrumb font_deafult">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="inbox/list"> الرسائل البريدية</a>
+						</li>
+						
+						<li><a href="#">{{BreadTitle}}</a></li>
+						
+
+					</ol>
+					<!-- -->
+   	  	
+ 
+   	  				<div ng-switch on="urlparam" ng-controller="InboxController">
+   	  					<div ng-switch-default >
+   	  	<!--  <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-body">
+          <input type="text" ng-model="take_me_outside" />
+          Selected: <b>{{ take_me_outside }}</b>
+        </div>
+        
+        <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok(take_me_outside)">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+     <button class="btn btn-default" ng-click="open('sm')">Small modal</button>
+   	  	 				 
+   	  		 -->
+                                             
+   	  						<div ng-show="TPLMessage_ERROR1">
+								<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+									لا توجد مواقع  مسجلة
+								</div>
+							</div>
+						
+						
+						<table id="testmme" ng-show="table1" class="table table-bordered table-striped font_deafult ">
+
+								<tr align="center" class="font_lastbook2">
+								 
+									
+									<td width="1%">   <span class="glyphicon glyphicon-envelope"></span</td>
+									
+									<td width="40%"> عنوان الراسلة</td>
+
+									<td width="10%"> تاريخ الرسالة</td>
+									<td width="1%" class="" >
+									 <input type="checkbox" ng-model="ck" class="selecctall"
+									ng-change="updateSelection(ck)" />
+									 
+ 
+								 
+									</td>
+
+								</tr>
+
+								<tr    align="center" class="font_deafult"   dir-paginate="pages in datagride | itemsPerPage: 20: 'cust'" pagination-id="cust">
+								 
+									<td width="1%">
+					 <span ng-if="pages.read==0"><img ng-src="../template/dashboard/images/icl2e.gif"></span>
+									
+					 <span ng-if="pages.read==1"><img ng-src="../template/dashboard/images/mail-16.png"></span>
+
+									</td>
+									<td width="40%"><a ng-href="inbox/preview/{{pages.ID}}">  {{pages.title|truncate:40}}</a>
+									 
+ 									</td>
+
+									<td width="10%" style="font-family: Tahoma; font-size: 11px;">  {{pages.message_dat}}  <span class="glyphicon glyphicon-time"></span></td>
+									<td width="1%">
+									 <input type="checkbox" class="checkbox1" name="c[]" id="px_{{$index}}" value="{{pages.ID}}"  ng-model="op[pages.ID]"   /> 
+									 
+									</td>
+
+								</tr>
+
+								<footer>
+									<tr>
+										<td colspan="4" align="left">
+										<button ng-click="deletePage();" type="button" style="width: 300px" class="btn btn-danger" >
+											حذف الرسائل المختارة
+										</button></td>
+									</tr>
+								</footer>
+
+							</table>
+
+							<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="../lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+
+						
+						
+   	  						
+   	  						
+   	  					</div>
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					
+   	  					<div ng-switch-when="add" ng-controller="InboxController">
+   	  						
+   	  								<div ng-show="TPLMessage_success">
+
+									<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+										  تم إرسال الرسالة بنجاح  
+									</div>
+								</div>
+   	  						
+   	  						<form class="font_deafult" style="width: 80%" role="form" id="pageForm" name="pageForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">إرسال إلي</label>
+    <input type="email"     class="form-control" ng-model="to"    required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">عنوان الرسالة</label>
+    <input type="text" class="form-control" ng-model="subject"  required="required">
+  </div>
+   
+     <div class="form-group">
+    <label for="exampleInputPassword1">محتوي الرسالة</label>
+  <textarea required="required" style="direction: ltr" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="tinymceModel" id="tinymceModel"></textarea>
+										
+  </div>
+   
+ <div align="center"  >
+<button ng-click="SendMessage();" style=" width: 400px;" type="button" class="btn btn-info" ng-disabled="!pageForm.$valid"> إرسال</button>
+</div>
+</form>
+   	  					
+   	  		
+   	  						
+   	  					</div>
+   	  					
+   	  					
+   	  					
+   	  					<div ng-switch-when="preview" ng-controller="InboxController">
+   	  						
+   	  									<div ng-show="TPLMessage_success">
+
+									<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+										  تم إرسال الرسالة بنجاح  
+									</div>
+								</div>
+
+   	  						
+   	  						
+   	   <table id="testmme"  class="table table-bordered table-striped font_deafult ">
+		<tr>
+			<td width="20%">عنوان الرسالة</td>
+			<td> {{messageinfo.title}}</td>   
+			
+			
+			</tr>
+			
+			<tr>
+				<td>بريد الراسل</td>
+			<td>{{messageinfo.email}}</td>   
+			
+			
+			</tr>
+			
+				<tr>
+				<td>  الرسالة</td>
+			<td>{{messageinfo.message}}</td>   
+			
+			
+			</tr>
+			
+   	  	</table>		
+   	   
+   	  	<div class="label label-warning pull-right font_deafult">الرد علي الرسالة</div>		
+   	  					 <hr style="color:blue"  />	
+   	  					<br/> &nbsp;
+   	  					
+   	  					<!-- -->
+   <form class="font_deafult" style="width: 80%" role="form" id="pageForm" name="pageForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">إرسال إلي</label>
+    <input type="email"   readonly="readonly" class="form-control" ng-model="to"    required="required">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">عنوان الرسالة</label>
+    <input type="text" class="form-control" ng-model="subject"  required="required">
+  </div>
+   
+     <div class="form-group">
+    <label for="exampleInputPassword1">محتوي الرسالة</label>
+  <textarea required="required" style="direction: ltr" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="tinymceModel" id="tinymceModel"></textarea>
+										
+  </div>
+   
+ <div align="center"  >
+<button ng-click="SendMessage();" style=" width: 400px;" type="button" class="btn btn-info" ng-disabled="!pageForm.$valid"> إرسال</button>
+</div>
+</form>
+   	  					
+   	  					
+   	  					
+   	  						
+   	  					<!-- -->	
+   	  					</div>
+   	  				
+   	  				
+   	  				
+   	  				
+   	  				
+   	  				</div>
+   	  				
+   	  				
+   	  				
+   	  				
+   	  				
+   	  				
+   	  				
+   	  				<!-- -->
+   	  			</div>
+   	  			
+   	  			
+   	  			
+   	  			
+   	  			
+   	  			<!-- -->
+   	  		</div>
+   	  	
+   	  </div>
+   	
+   			<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+
+</div>
+
+
+</div>

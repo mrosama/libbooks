@@ -1,0 +1,102 @@
+<div class="list-group font_deafult "style="direction: rtl">
+	
+<ol class="breadcrumb" >
+  <li><a href="home">{{ 'load.Website.HOMEPAGE' | translate }}</a></li>
+  <li><a href="library">{{ 'load.Website.LIBBOOK' | translate }}</a></li>
+ 
+   
+
+ <li ng-repeat="catval in reverse(breadVal) track by $index "><a ng-href="library/{{breadKey[$index]}}">{{catval}}</a></li>
+   
+</ol>	
+	
+	
+	
+	
+<div   class="panel panel-default">
+  <div class="panel-heading">       {{ 'load.Website.LIBBOOK' | translate }}</div>
+  <div class="panel-body">
+
+ 
+<div class="row"  ng-show="viewcat" >
+		<div ng-repeat="lbooks in bookcat">
+			
+			<a ng-href="library/{{lbooks.ID}}"> <div class="col-sm-6 col-md-4 image">
+    <div class="thumbnail" >
+      <img ng-src="template/attach/upload/cat2.png" alt="..."   >
+      <div class="caption bookCation2" align="center"   >
+        <h3 class="font_lastbook"><tt style="font-family: Tahoma">({{bookcatTotal[$index]}})</tt>  {{lbooks.name|truncate:40}}</h3>
+        
+        
+      </div>
+    </div>
+  </div>
+		</a>
+			
+	   </div>		
+	
+</div>
+
+ 
+ 
+ <div ng-show="TPLMessage_ERROR">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NOBOOKFOUND' | translate }}
+		</div>
+	</div>
+ 
+ 
+<div class="row"  >
+	
+	
+<div style="margin: 0 auto" ng-show="viewbook" >
+ 
+
+<table class="table table-bordered table-striped font_deafult ">
+	
+	<tr align="center" class="font_lastbook2">
+		<td>#</td>
+		<td width="40%">{{ 'load.Website.NEWBOOKNAME' | translate }}  </td>
+	<td width="30%">{{ 'load.Website.NEWBOOKAUTHOR' | translate }}</td>
+		<td width="10%">{{ 'load.Website.ISIZE' | translate }}</td>
+		<td width="30%">{{ 'load.Website.IDATE' | translate }}</td>
+		
+	</tr>
+	
+	
+  <tr class="font_table"  dir-paginate="nlist in gridbook | itemsPerPage: 20: 'cust'" pagination-id="cust">
+     <td   width="2%"><span class="glyphicon glyphicon-book"></span></td>	
+  <td><a   ng-href="view/{{nlist.cat}}/{{nlist.ID}}">{{nlist.bookname}}</a></td>
+  <td> {{nlist.author}}</td>
+  <td>{{nlist.size}}</a></td>
+  <td>{{nlist.dat}}</a></td>
+
+  
+  </tr>
+	
+
+  
+</table>
+
+ 
+
+<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+	
+	
+</div>
+
+ 
+
+
+	
+
+
+
+ 
+</div></div>
+
+
+
+</div>

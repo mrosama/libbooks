@@ -1,0 +1,65 @@
+
+<div class="list-group font_deafult "style="direction: rtl">
+	
+	
+<ol class="breadcrumb" >
+  <li><a href="home">{{ 'load.Website.HOMEPAGE' | translate }}</a></li>
+  <li><a href="library">{{ 'load.Website.LIBBOOK' | translate }}</a></li>
+ 
+   
+
+ <li ng-repeat="catval in reverse(breadVal) track by $index "><a ng-href="library/{{breadKey[$index]}}">{{catval}}</a></li>
+   
+</ol>		
+	
+	
+<div   class="panel panel-default">
+	<div class="panel-heading">
+		{{ 'load.Website.LIBBOOK' | translate }}
+	</div>
+	<div class="panel-body">
+  <div ng-show="TPLMessage_ERROR">
+
+		<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+			{{ 'load.Message.NOBOOKFOUND' | translate }}
+		</div>
+	</div>
+ 
+ <!-- -->
+ 
+   <div style="margin: 0 auto" ng-show="viewbook" >
+    <table style="direction: ltr" class="table table-bordered table-striped font_deafult ">
+	<tr><td align="center" class="font_table">{{gridbook.bookname}}</td><td width="20%" align="right">{{ 'load.Website.NEWBOOKNAME' | translate }} </td><td width="2%"> <span class="glyphicon glyphicon-book"></span></td></tr>
+	<tr><td align="center" class="font_table">
+		 
+		  <div ng-if="gridbook.cover!=''"><img ng-src="template/attach/upload/{{gridbook.cover}}" /></div>
+             <div ng-if="gridbook.cover==''"> {{ 'load.Website.INoCover' | translate }}</div>
+		</td><td width="20%" align="right">{{ 'load.Website.ICover' | translate }}</td><td width="2%">  <span class="glyphicon glyphicon-picture"></span></td></tr>
+	<tr><td align="center" class="font_table">{{gridbook.author}}</td><td width="20%" align="right">{{ 'load.Website.NEWBOOKAUTHOR' | translate }}</td><td width="2%"> <span class="glyphicon glyphicon-user"></span></td></tr>
+	
+	<tr><td align="center" class="font_table">{{gridbook.authoremail}}</td><td width="20%" align="right"> {{ 'load.Website.NEWBOOKEMAIL' | translate }}</td><td width="2%"> <span class="glyphicon glyphicon-envelope"></span></td></tr>
+	<tr><td align="center" class="font_table">{{gridbook.size}}</td><td width="20%" align="right">   {{ 'load.Website.ISIZE' | translate }} </td><td width="2%"><span class="glyphicon glyphicon-hdd"></span></td></tr>
+	<tr><td align="center" class="font_table">{{gridbook.dat}}</td><td width="20%" align="right">   {{ 'load.Website.IDATE' | translate }} </td><td width="2%"> <span class="glyphicon glyphicon-dashboard"></span></td></tr>
+	<tr><td align="center" class="font_table">{{gridbook.bookdesc}}</td><td width="20%" align="right">  {{ 'load.Website.NEWBOOKDESC' | translate }} </td><td width="2%"> <span class="glyphicon glyphicon-flag"></span></td></tr>
+	
+	<tr><td align="center" colspan="4">
+		
+		<button ng-click="download(gridbook.ID);" ng-disabled="isDisabled" style="width: 400px"  ng-class="classbtn">   {{ 'load.Website.IDownload' | translate }}</button>
+		
+	 <div style="font-family: Tahoma; font-size: 30px">
+	 	<timer countdown="21" interval="1000" finish-callback="callbackTimer()" > {{seconds}}</timer>
+		
+		 </div>
+		 <iframe id="win1" width="1px" height="1px" ng-show="downfiles" ng-src="{{val1}}"></iframe>
+		 
+	</td></tr>
+	</table>
+	
+	</div>
+ 
+ 
+ 
+ 
+	</div>
+</div>
+</div>

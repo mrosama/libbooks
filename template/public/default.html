@@ -1,0 +1,49 @@
+
+
+ 
+ <a id="top"></a>
+ 
+<div   id="defaultPage" style="direction: rtl" ng-cloak>
+	<h1 class="font_header"> {{optionsVal.msg_title}}</h1>
+	<hr/>
+	<p class="fontClassC"   ng-bind-html="myHTML=optionsVal.msg_content"></p> 
+	 
+	</div>
+	
+	<hr/>
+	
+	<div class="panel panel-default" style="direction: rtl" ng-cloak>
+  <div class="panel-heading">
+    <h3 class="panel-title font_header" style="direction: rtl"> {{ 'load.Website.LASTBOOK' | translate }} </h3>
+  </div>
+  <div class="panel-body">
+   
+   <div class="row">
+   	
+   	<div ng-repeat="lbooks in initbook">
+   	
+  <a ng-href="view/{{lbooks.cat}}/{{lbooks.ID}}"><div class="col-sm-6 col-md-4 image">
+    <div class="thumbnail" >
+      <img ng-src="template/attach/upload/{{lbooks.cover}}" alt="...">
+      <div class="caption bookCation" align="center"   >
+        <h3 class="font_lastbook">{{lbooks.bookname|truncate:40}}</h3>
+        
+        
+      </div>
+    </div>
+  </div></a>
+  
+  </div>
+  
+ 
+</div>
+   
+   
+       <a ng-click="gotoElement('top')">Go to top</a>
+   
+ 
+   
+  </div>
+</div>
+	
+

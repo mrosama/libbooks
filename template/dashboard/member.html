@@ -1,0 +1,442 @@
+<div header-admin></div>
+
+<div class="container-fluid"  >
+	<div class="row">
+		
+		<div class="col-xs-6 col-md-10">
+			<div class="row">
+				 
+				<div class="col-md-3">
+					
+						<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+						     خيارات العضوية
+						</div>
+						<div class="panel-body" >
+							<ul class="font_deafult" style="line-height: 25px;">
+								<li>
+									<a href="member/add">  تسجيل مستخدم جديد </a>
+								</li>
+								<li>
+									<a href="member/list">  قائمة ألاعضاء المسجلين</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+				<div class="col-md-9" style="direction: rtl">
+					<!-- -->
+					<ol class="breadcrumb font_deafult">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="member/list"> بيانات العضوية</a>
+						</li>
+						
+						<li><a href="#">{{BreadTitle}}</a></li>
+						
+
+					</ol>
+					<!-- -->
+					
+					
+					
+					<div ng-switch on="urlparam">
+						
+                     <div ng-switch-default>
+                     	
+                     		<table id="testmme" ng-show="table1" class="table table-bordered table-striped font_deafult ">
+
+								<tr align="center" class="font_lastbook2">
+								 
+									
+									<td width="1%">  <span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="1%">مسلسل</td>
+									
+									
+									<td width="40%">البريد الالكتروني</td>
+
+									<td width="10%"> العضوية</td>
+									<td width="10%"> تعديل</td>
+									<td width="1%" class="" >
+									 <input type="checkbox" ng-model="ck" class="selecctall"
+									ng-change="updateSelection(ck)" />
+									 
+ 
+								 
+									</td>
+
+								</tr>
+
+								<tr    align="center" class="font_deafult"   dir-paginate="pages in datagride | itemsPerPage: 20: 'cust'" pagination-id="cust">
+								 
+									<td width="1%">
+					             <span class="glyphicon glyphicon-th-large"></span>
+
+									</td>
+									
+										<td width="1%">
+					            <span class="label label-info"> {{pages.ID}}</span>
+
+									</td>
+									
+									<td width="40%" style="font-family: Tahoma">  {{pages.email}} 
+									 
+ 									</td>
+	                             <td width="1%">
+ 
+     		   <span ng-if="pages.Admin=='0'"> عضو</span>
+									
+					 <span ng-if="pages.Admin=='1'">مدير عام</span>
+
+ 
+
+ 
+ 
+									</td>
+                                <td width="1%">
+					             <a ng-href="member/edit/{{pages.ID}}"> <span class="glyphicon glyphicon-pencil"></span>
+
+									</td>
+
+ 									<td width="1%">
+									 <input type="checkbox" class="checkbox1" name="c[]" id="px_{{$index}}" value="{{pages.ID}}"  ng-model="op[pages.ID]"   /> 
+									 
+									</td>
+
+								</tr>
+
+								<footer>
+									<tr>
+										<td colspan="6" align="left">
+										
+										
+										
+										<button ng-click="changeRole(0);" type="button"  class="btn btn-warning" >
+											عضوية عادية   
+										</button>
+										
+										
+										<button ng-click="changeRole(1);" type="button"   class="btn btn-success" >
+											عضوية إدارية    
+										</button>
+										
+										<button ng-click="deletePage();" type="button"   class="btn btn-danger" >
+											حذف    
+										</button>
+										</td>
+									</tr>
+								</footer>
+
+							</table>
+
+							<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="../lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+	
+                     	
+                     	
+                     	
+                     </div>
+                     
+                     
+                     
+                     <div ng-switch-when="add"  ng-controller="MembersController">
+                     		 <div style="width:80%">
+                     			 	 <div ng-show="TPLMessage_ERROR">
+ 
+	<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">{{ 'load.Message.USEREMAILFOUND' | translate }}</div>
+</div>
+
+	<div ng-show="TPLMessage_success">
+ 
+	<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">{{ 'load.Message.USERREGISTEROK' | translate }}      </div>
+</div> 	
+                     		 	
+                     		 	
+                     		 	
+                     		 	<div   class="font_deafult"  >
+			<form  ng-submit="submitForm()" novalidate name="registerForm" role="form" class="font_deafult">
+				<div class="form-group">
+					<label for="exampleInputEmail1">{{ 'load.Website.EMAIL' | translate }}</label>
+					<input type="email" ng-model="email" name="email" class="form-control" id="exampleInputEmail1" required="required"  >
+				
+				<span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+  <span ng-show="!registerForm.email.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+  <span ng-show="!registerForm.email.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.PASS' | translate }}</label>
+					<input type="password" ng-model="pass" name="pass" class="form-control" id="exampleInputPassword1" required="required"  >
+					<span style="color:red" ng-show="registerForm.pass.$dirty && registerForm.pass.$invalid">
+  <span ng-show="!registerForm.pass.$error.required">{{ 'load.Message.USERPASSMIS' | translate }}</span>
+   
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.CPASS' | translate }}</label>
+					<input type="password" ng-model="cpass" name="cpass" class="form-control" id="exampleInputPassword1" required="required" data-password-verify="pass"  >
+			<span style="color:red" ng-show="registerForm.cpass.$dirty && registerForm.cpass.$invalid">
+  <span ng-show="!registerForm.cpass.$error.required">{{ 'load.Message.USERCPASSMIS' | translate }}</span>
+			  <div ng-show="!registerForm.cpass.$error.passwordVerify">
+       {{ 'load.Message.USERCPASSCONFIRM' | translate }}</div>
+			
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.REGCOUNTRY' | translate }} </label>
+		 
+  <select class="form-control" data-ng-model="country"
+        data-ng-options="t.flag as t.arabic for t in Listcountry">              
+</select>
+  
+  
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGGENDER' | translate }}
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="male" ng-checked="true" ng-model="gender" checked="checked" name="gender" id="inlineRadio1"  >
+						&nbsp; &nbsp; &nbsp;  {{ 'load.Website.REGMAIL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="female" ng-model="gender" name="gender" id="inlineRadio1"  >
+						&nbsp;&nbsp; &nbsp;   {{ 'load.Website.REGFMAEL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGFAV' | translate }}
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="YES"    ng-model="FavIT"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVIT' | translate }} </label>
+					</div>
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavAd"   ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVADB' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavPo"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVPOLIC' | translate }} </label>
+					</div>
+					<div class="checkbox ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavHis" ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVHIST' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavSc"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVSEC' | translate }} </label>
+					</div>
+
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="exampleInputPassword1">نوع العضوية</label>
+ 					 
+         <select ng-model="admin"  class="form-control" >
+         	<option value="0">عضوية عادية</option>
+         	<option value="1">مدير عام</option>
+       	</select>
+				
+				</div>	
+				
+				
+				
+				
+			 
+
+<button type="submit" class="btn btn-info" ng-disabled="!registerForm.$valid">
+					{{ 'load.Website.REGBUTTON' | translate }}
+				</button>
+			</form>
+		 	  
+		</div>
+                     		 	
+                     		 	</div>
+                     </div>
+                     
+                     
+                     
+                     <div ng-switch-when="edit" ng-controller="MembersController">
+                     	
+                     	<div style="width:80%">
+                     			 	 <div ng-show="TPLMessage_ERROR">
+ 
+	<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">{{ 'load.Message.USEREMAILFOUND' | translate }}</div>
+</div>
+
+	<div ng-show="TPLMessage_success">
+ 
+	<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">{{ 'load.Message.USERREGISTEROK' | translate }}      </div>
+</div> 	
+                     		 	
+                     		 	
+                     		 	
+                     		 	<div   class="font_deafult"  >
+			<form  ng-submit="submitForm()" novalidate name="registerForm" role="form" class="font_deafult">
+				<div class="form-group">
+					<label for="exampleInputEmail1">{{ 'load.Website.EMAIL' | translate }}</label>
+					<input type="email" ng-model="email" name="email" class="form-control" id="exampleInputEmail1" required="required"  >
+				
+				<span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+  <span ng-show="!registerForm.email.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+  <span ng-show="!registerForm.email.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.PASS' | translate }}</label>
+					<input type="password" ng-model="pass" name="pass" class="form-control" id="exampleInputPassword1" required="required"  >
+					<span style="color:red" ng-show="registerForm.pass.$dirty && registerForm.pass.$invalid">
+  <span ng-show="!registerForm.pass.$error.required">{{ 'load.Message.USERPASSMIS' | translate }}</span>
+   
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.CPASS' | translate }}</label>
+					<input type="password" ng-model="cpass" name="cpass" class="form-control" id="exampleInputPassword1" required="required" data-password-verify="pass"  >
+			<span style="color:red" ng-show="registerForm.cpass.$dirty && registerForm.cpass.$invalid">
+  <span ng-show="!registerForm.cpass.$error.required">{{ 'load.Message.USERCPASSMIS' | translate }}</span>
+			  <div ng-show="!registerForm.cpass.$error.passwordVerify">
+       {{ 'load.Message.USERCPASSCONFIRM' | translate }}</div>
+			
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.REGCOUNTRY' | translate }} </label>
+		 
+  <select class="form-control" data-ng-model="country"
+        data-ng-options="t.flag as t.arabic for t in Listcountry">              
+</select>
+  
+  
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGGENDER' | translate }}
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="male" ng-checked="true" ng-model="gender" checked="checked" name="gender" id="inlineRadio1"  >
+						&nbsp; &nbsp; &nbsp;  {{ 'load.Website.REGMAIL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="female" ng-model="gender" name="gender" id="inlineRadio1"  >
+						&nbsp;&nbsp; &nbsp;   {{ 'load.Website.REGFMAEL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGFAV' | translate }}
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="YES"    ng-model="FavIT"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVIT' | translate }} </label>
+					</div>
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavAd"   ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVADB' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavPo"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVPOLIC' | translate }} </label>
+					</div>
+					<div class="checkbox ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavHis" ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVHIST' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavSc"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVSEC' | translate }} </label>
+					</div>
+
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="exampleInputPassword1">نوع العضوية</label>
+ 					 
+         <select     ng-model="admin"  class="form-control" >
+         	<option value="0">عضوية عادية</option>
+         	<option value="1">مدير عام</option>
+       	</select>
+				
+				</div>	
+				
+				
+				
+				
+			 
+
+<button type="submit" class="btn btn-info" ng-disabled="!registerForm.$valid">
+					{{ 'load.Website.REGBUTTON' | translate }}
+				</button>
+			</form>
+		 	  
+		</div>
+                     		 	
+                     		 	</div>
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     	
+                     </div>
+                     	<!-- ng-switch on="urlparam"-->
+					</div>
+					
+					
+					
+					<!-- col-md-9 -->
+				</div>
+				
+				</div>
+			
+			
+			
+		</div>
+		
+		
+		<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+		
+		
+		
+		
+		</div>
+
+</div>

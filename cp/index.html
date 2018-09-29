@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" ng-app="dashboardApp">
+	<head>
+		<meta charset="utf-8" />
+		<base href="/preview/books/cp/" >
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="all" />
+
+		<link href="../css/bootstrap/normalize.css" rel="stylesheet" media="screen"/>
+
+		<link   rel="stylesheet" href="../css/bootstrap/fontadmin.css?version=0.1" type="text/css" charset="utf-8" />
+
+		<link   rel="stylesheet" href="../css/bootstrap/style_en.css?version=0.1" type="text/css" charset="utf-8" />
+		<link   rel="stylesheet" href="../css/animations.css?version=0.1" type="text/css" charset="utf-8" />
+
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<script type="text/javascript" src="../lib/editor/tinymce/js/jquery.min.js"></script>
+		<!-- jQuery UI -->
+		<script type="text/javascript" src="../lib/editor/tinymce/js/jquery-ui.js"></script>
+		<!-- TinyMCE -->
+		<!--
+		<script type="text/javascript" src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>-->
+		<script type="text/javascript" src="../lib/editor/tinymce/js/tinymce.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<div ng-view class="view-slide-in"></div>
+
+		<hr>
+
+		<footer>
+
+			<p>
+				&copy; Osama_eg@outlook.com 2016/2017
+			</p>
+		</footer>
+
+		<!-- include all Script library -->
+		<script src="../lib/angular/angular.min.js"></script>
+		<script src="../lib/angular/angular-route.min.js"></script>
+		<script src="../lib/angular/angular-animate.min.js"></script>
+		<script src="../css/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+		<script src="../lib/angular/angular-sanitize.min.js"></script>
+
+		<script src="../lib/angular-translate.min.js"></script>
+		<script src="../lib/angular-cookies.min.js"></script>
+		<script src="../lib/loader-static-files.js"></script>
+
+		<script src="../lib/pagination/dirPagination.js"></script>
+		<script src="../lib/ngHtmlCompile.js"></script>
+		<script src="../lib/filters.js"></script>
+		<script src="../lib/ngdialog/js/ngDialog.min.js"></script>
+
+		<script src="../lib/editor/tinymce/js/tinymce.js"></script>
+
+		<script src="../api/dashboard.js"></script>
+		<script src="../api/routing/board_route.js"></script>
+
+		<script src="../api/services/services_admin.js"></script>
+
+		<script src="../api/directives/admin/header_directive.js"></script>
+		<script src="../api/directives/admin/menu_directive.js"></script>
+
+		<script src="../api/controllers/dashboard/MainController.js"></script>
+		<script src="../api/controllers/dashboard/PageController.js"></script>
+		<script src="../api/controllers/dashboard/OptionController.js"></script>
+		<script src="../api/controllers/dashboard/LinksController.js"></script>
+		<script src="../api/controllers/dashboard/InboxController.js"></script>
+		<script src="../api/controllers/dashboard/PollController.js"></script>
+		<script src="../api/controllers/dashboard/AdvController.js"></script>
+		<script src="../api/controllers/dashboard/BookController.js"></script>
+		<script src="../api/controllers/dashboard/MembersController.js"></script>
+		<script src="../api/controllers/dashboard/ModalInstanceCtrl.js"></script>
+
+	</body>
+</html>

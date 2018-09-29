@@ -1,0 +1,465 @@
+
+<div ng-switch on="urlparam">
+	
+	 <div ng-switch-when="user">
+	 	<div ng-controller="UserController">
+<div id="defaultPage" style="direction: rtl">
+	<h1 class="font_header"> {{ 'load.Website.REGUSERS' | translate }}  </h1>
+	<hr/>
+	<p class="font_deafult" >
+		
+		<div ng-show="TPLMessage_CAPATCH">
+ 
+	<div style="direction: rtl" class="alert alert-warning fontClassAlert" role="alert">{{ 'load.Message.UserCAPTCH' | translate }} </div>
+</div>
+
+	<div ng-show="TPLMessage_ERROR">
+ 
+	<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">{{ 'load.Message.USEREMAILFOUND' | translate }}</div>
+</div>
+
+	<div ng-show="TPLMessage_success">
+ 
+	<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">{{ 'load.Message.USERREGISTEROK' | translate }}      </div>
+</div>
+		
+		
+		<div ng-show="formUser" class="font_deafult" style="width: 450px;">
+			<form  ng-submit="submitForm()" novalidate name="registerForm" role="form" class="font_deafult">
+				<div class="form-group">
+					<label for="exampleInputEmail1">{{ 'load.Website.EMAIL' | translate }}</label>
+					<input type="email" ng-model="email" name="email" class="form-control" id="exampleInputEmail1" required="required"  >
+				
+				<span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+  <span ng-show="!registerForm.email.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+  <span ng-show="!registerForm.email.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.PASS' | translate }}</label>
+					<input type="password" ng-model="pass" name="pass" class="form-control" id="exampleInputPassword1" required="required"  >
+					<span style="color:red" ng-show="registerForm.pass.$dirty && registerForm.pass.$invalid">
+  <span ng-show="!registerForm.pass.$error.required">{{ 'load.Message.USERPASSMIS' | translate }}</span>
+   
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.CPASS' | translate }}</label>
+					<input type="password" ng-model="cpass" name="cpass" class="form-control" id="exampleInputPassword1" required="required" data-password-verify="pass"  >
+			<span style="color:red" ng-show="registerForm.cpass.$dirty && registerForm.cpass.$invalid">
+  <span ng-show="!registerForm.cpass.$error.required">{{ 'load.Message.USERCPASSMIS' | translate }}</span>
+			  <div ng-show="!registerForm.cpass.$error.passwordVerify">
+       {{ 'load.Message.USERCPASSCONFIRM' | translate }}</div>
+			
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.REGCOUNTRY' | translate }} </label>
+				<!--	<select      ng-model="country" class="form-control" ng-options="item.ID as item.arabic for item in country">
+					 
+				</select>-->
+				
+	<!--	<select class="form-control"  ng-model="country">
+			
+      
+            <option ng-selected="'eg' == city.flag"   ng-repeat="city in Listcountry" value="{{city.flag}}">{{city.arabic}}</option>
+
+    
+  </select> -->
+  <select class="form-control" data-ng-model="country"
+        data-ng-options="t.flag as t.arabic for t in Listcountry">              
+</select>
+  
+  
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGGENDER' | translate }}
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="male" ng-checked="true" ng-model="gender" checked="checked" name="gender" id="inlineRadio1"  >
+						&nbsp; &nbsp; &nbsp;  {{ 'load.Website.REGMAIL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="female" ng-model="gender" name="gender" id="inlineRadio1"  >
+						&nbsp;&nbsp; &nbsp;   {{ 'load.Website.REGFMAEL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGFAV' | translate }}
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="YES"    ng-model="FavIT"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVIT' | translate }} </label>
+					</div>
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavAd"   ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVADB' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavPo"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVPOLIC' | translate }} </label>
+					</div>
+					<div class="checkbox ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavHis" ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVHIST' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavSc"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVSEC' | translate }} </label>
+					</div>
+
+				</div>
+				
+				<div class="form-group">
+                    <label>{{ 'load.Website.REGCAPTCH' | translate }} </label>
+               
+                
+                 <div style='-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;' 
+ unselectable='on'
+ onselectstart='return false;' 
+ onmousedown='return false;'  class="captch label label-primary"> {{captch}} </div>
+  <input style="width: 200px;" type="text" name="captchinput" ng-model="captchinput" class="form-control col-xs-2" id="captchinput" required>
+ 
+ 
+ <span style="color:red" ng-show="!registerForm.captchinput.$dirty && registerForm.captchinput.$invalid">
+  <span ng-show="!registerForm.captchinput.$error.required">captchinput is required.</span>
+ 
+  </div>
+
+<button type="submit" class="btn btn-info" ng-disabled="!registerForm.$valid">
+					{{ 'load.Website.REGBUTTON' | translate }}
+				</button>
+			</form>
+		</div>
+
+	</p>
+</div>
+
+<hr/>
+
+</div>
+
+	 	</div>
+	 	
+	 	
+	 	
+	 	<!-- end user   begin profiles -->
+	 	
+	 	<div ng-switch-when="profile">
+	 		<div ng-controller="UserController">
+	
+	 		<div id="defaultPage" style="direction: rtl">
+	<h1 class="font_header"> {{ 'load.Website.PROFILEEDIT' | translate }}  </h1>
+	<hr/>
+	<p class="font_deafult" >
+		
+		<div ng-show="TPLMessage_CAPATCH">
+ 
+	<div style="direction: rtl" class="alert alert-warning fontClassAlert" role="alert">{{ 'load.Message.UserCAPTCH' | translate }} </div>
+</div>
+
+	<div ng-show="TPLMessage_ERROR">
+ 
+	<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">{{ 'load.Message.PROFILEERROR' | translate }}</div>
+</div>
+
+	<div ng-show="TPLMessage_success">
+ 
+	<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">{{ 'load.Message.PROFILEEDIT' | translate }}      </div>
+</div>
+		
+		
+		<div ng-show="formUser" class="font_deafult" style="width: 450px;">
+			<form  ng-submit="submitForm()" novalidate name="EditForm" role="form" class="font_deafult">
+				<div class="form-group">
+					<label for="exampleInputEmail1">{{ 'load.Website.EMAIL' | translate }}</label>
+					<input type="email" disabled="disabled" ng-model="emailprofile" name="emailprofile" class="form-control" id="exampleInputEmail1" required="required"  >
+				
+				<span style="color:red" ng-show="EditForm.emailprofile.$dirty && EditForm.emailprofile.$invalid">
+  <span ng-show="!EditForm.emailprofile.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+  <span ng-show="!EditForm.emailprofile.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.PASS' | translate }}</label>
+					<input type="password" ng-model="passprofile" name="passprofile" class="form-control" id="exampleInputPassword1" required="required"  >
+					<span style="color:red" ng-show="EditForm.passprofile.$dirty && EditForm.passprofile.$invalid">
+  <span ng-show="!EditForm.passprofile.$error.required">{{ 'load.Message.USERPASSMIS' | translate }}</span>
+   
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.CPASS' | translate }}</label>
+					<input type="password" ng-model="cpass" name="cpass" class="form-control" id="exampleInputPassword1" required="required" data-password-verify="passprofile"  >
+			<span style="color:red" ng-show="EditForm.cpass.$dirty && EditForm.cpass.$invalid">
+  <span ng-show="!EditForm.cpass.$error.required">{{ 'load.Message.USERCPASSMIS' | translate }}</span>
+			  <div ng-show="!EditForm.cpass.$error.passwordVerify">
+       {{ 'load.Message.USERCPASSCONFIRM' | translate }}</div>
+			
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.REGCOUNTRY' | translate }} </label>
+				<!--	<select      ng-model="country" class="form-control" ng-options="item.ID as item.arabic for item in country">
+					 
+				</select>-->
+				
+	 <!-- 	<select class="form-control"  ng-model="country">
+			
+      
+    
+         <option ng-selected="'{{checkCountry}}' == city.flag"  ng-repeat="city in Listcountry" value="{{city.flag}}">{{city.arabic}}</option>
+
+    
+     </select> -->
+      <select class="form-control" data-ng-model="country"
+        data-ng-options="t.flag as t.arabic for t in Listcountry">              
+</select>
+  
+     
+     
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGGENDER' | translate }}
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="male"   ng-model="gender"  name="gender" id="inlineRadio1"  >
+						&nbsp; &nbsp; &nbsp;  {{ 'load.Website.REGMAIL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="female" ng-model="gender" name="gender" id="inlineRadio1"  >
+						&nbsp;&nbsp; &nbsp;   {{ 'load.Website.REGFMAEL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGFAV' | translate }}
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="YES"    ng-model="FavIT"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVIT' | translate }} </label>
+					</div>
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavAd"   ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVADB' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavPo"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVPOLIC' | translate }} </label>
+					</div>
+					<div class="checkbox ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavHis" ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVHIST' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavSc"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVSEC' | translate }} </label>
+					</div>
+
+				</div>
+				
+				<div class="form-group">
+                    <label>{{ 'load.Website.REGCAPTCH' | translate }} </label>
+               
+                
+                 <div style='-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;' 
+ unselectable='on'
+ onselectstart='return false;' 
+ onmousedown='return false;'  class="captch label label-primary"> {{captch}} </div>
+  <input style="width: 200px;" type="text" name="captchinput" ng-model="captchinput" class="form-control col-xs-2" id="captchinput" required>
+ 
+ 
+ <span style="color:red" ng-show="!EditForm.captchinput.$dirty && EditForm.captchinput.$invalid">
+  <span ng-show="!EditForm.captchinput.$error.required">captchinput is required.</span>
+ 
+  </div>
+
+<button type="submit" class="btn btn-info" ng-disabled="!EditForm.$valid">
+					{{ 'load.Website.REGBUTTON' | translate }}
+				</button>
+			</form>
+		</div>
+
+	</p>
+</div>
+
+<hr/>
+
+
+</div>
+
+
+
+
+
+	 	</div>
+	 	
+	 	
+	 	
+	 	<!-- end profile -->
+	 	
+	 	<div ng-switch-default>
+	 		
+	 		<div id="defaultPage" style="direction: rtl">
+	<h1 class="font_header"> {{ 'load.Website.REGUSERS' | translate }}  </h1>
+	<hr/>
+	<p class="font_deafult" >
+		
+		<div ng-show="TPLMessage_CAPATCH">
+ 
+	<div style="direction: rtl" class="alert alert-warning fontClassAlert" role="alert">{{ 'load.Message.UserCAPTCH' | translate }} </div>
+</div>
+
+	<div ng-show="TPLMessage_ERROR">
+ 
+	<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">{{ 'load.Message.USEREMAILFOUND' | translate }}</div>
+</div>
+
+	<div ng-show="TPLMessage_success">
+ 
+	<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">{{ 'load.Message.USERREGISTEROK' | translate }}      </div>
+</div>
+		
+		
+		<div ng-show="formUser" class="font_deafult" style="width: 450px;">
+			<form  ng-submit="submitForm()" novalidate name="registerForm" role="form" class="font_deafult">
+				<div class="form-group">
+					<label for="exampleInputEmail1">{{ 'load.Website.EMAIL' | translate }}</label>
+					<input type="email" ng-model="email" name="email" class="form-control" id="exampleInputEmail1" required="required"  >
+				
+				<span style="color:red" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">
+  <span ng-show="!registerForm.email.$error.required">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+  <span ng-show="!registerForm.email.$error.email">{{ 'load.Message.USEREMAILERROR' | translate }}</span>
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.PASS' | translate }}</label>
+					<input type="password" ng-model="pass" name="pass" class="form-control" id="exampleInputPassword1" required="required"  >
+					<span style="color:red" ng-show="registerForm.pass.$dirty && registerForm.pass.$invalid">
+  <span ng-show="!registerForm.pass.$error.required">{{ 'load.Message.USERPASSMIS' | translate }}</span>
+   
+				
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.CPASS' | translate }}</label>
+					<input type="password" ng-model="cpass" name="cpass" class="form-control" id="exampleInputPassword1" required="required" data-password-verify="pass"  >
+			<span style="color:red" ng-show="registerForm.cpass.$dirty && registerForm.cpass.$invalid">
+  <span ng-show="!registerForm.cpass.$error.required">{{ 'load.Message.USERCPASSMIS' | translate }}</span>
+			  <div ng-show="!registerForm.cpass.$error.passwordVerify">
+       {{ 'load.Message.USERCPASSCONFIRM' | translate }}</div>
+			
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputPassword1">{{ 'load.Website.REGCOUNTRY' | translate }} </label>
+				<!--	<select      ng-model="country" class="form-control" ng-options="item.ID as item.arabic for item in country">
+					 
+				</select>-->
+				
+		<select class="form-control"  ng-model="country">
+			
+      
+         <option  ng-if="city.ID==2" selected="selected" ng-repeat="city in Listcountry" value="{{city.ID}}">{{city.arabic}}</option>
+           <option  ng-repeat="city in Listcountry" value="{{city.flag}}">{{city.arabic}}</option>
+
+    
+     </select> 
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGGENDER' | translate }}
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="male" ng-checked="true" ng-model="gender" checked="checked" name="gender" id="inlineRadio1"  >
+						&nbsp; &nbsp; &nbsp;  {{ 'load.Website.REGMAIL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+					<label class="radio-inline"> &nbsp;&nbsp;
+						<input type="radio" value="female" ng-model="gender" name="gender" id="inlineRadio1"  >
+						&nbsp;&nbsp; &nbsp;   {{ 'load.Website.REGFMAEL' | translate }}  &nbsp;&nbsp;&nbsp; </label>
+				</div>
+
+				<div class="form-group">
+					{{ 'load.Website.REGFAV' | translate }}
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="YES"    ng-model="FavIT"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVIT' | translate }} </label>
+					</div>
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavAd"   ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVADB' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavPo"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVPOLIC' | translate }} </label>
+					</div>
+					<div class="checkbox ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavHis" ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVHIST' | translate }} </label>
+					</div>
+
+					<div class="checkbox  ">
+						<label>
+							<input type="checkbox" value="YES" ng-model="FavSc"  ng-true-value="'YES'" ng-false-value="'NO'" >
+							&nbsp;&nbsp; &nbsp;&nbsp;
+							{{ 'load.Website.REGFAVSEC' | translate }} </label>
+					</div>
+
+				</div>
+				
+				<div class="form-group">
+                    <label>{{ 'load.Website.REGCAPTCH' | translate }} </label>
+               
+                
+                 <div style='-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;' 
+ unselectable='on'
+ onselectstart='return false;' 
+ onmousedown='return false;'  class="captch label label-primary"> {{captch}} </div>
+  <input style="width: 200px;" type="text" name="captchinput" ng-model="captchinput" class="form-control col-xs-2" id="captchinput" required>
+ 
+ 
+ <span style="color:red" ng-show="!registerForm.captchinput.$dirty && registerForm.captchinput.$invalid">
+  <span ng-show="!registerForm.captchinput.$error.required">captchinput is required.</span>
+ 
+  </div>
+
+<button type="submit" class="btn btn-info" ng-disabled="!registerForm.$valid">
+					{{ 'load.Website.REGBUTTON' | translate }}
+				</button>
+			</form>
+		</div>
+
+	</p>
+</div>
+
+<hr/>
+	 		
+	 		 </div>
+	 	
+	</div>
+

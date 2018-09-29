@@ -1,0 +1,196 @@
+ 
+<div header-admin></div>
+
+<div class="container-fluid">
+
+	<div class="row">
+
+		<!--center -->
+		<div class="col-xs-6 col-md-10">
+
+			<div class="row">
+				<div class="col-md-3"  >
+					<div style="direction: rtl" class="panel panel-default font_deafult" >
+						<div align="center" class="panel-heading">
+							خيارات الصفحات
+						</div>
+						<div class="panel-body" >
+							<ul class="font_deafult" style="line-height: 25px;">
+								<li>
+									<a href="page/add">إضافة صفحة جديدة</a>
+								</li>
+								<li>
+									<a href="page/list">قائمة الصفحات</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-9" style="direction: rtl" >
+					<!-- -->
+					<ol class="breadcrumb font_deafult">
+						<li>
+							<a href="#">الرئيسية</a>
+						</li>
+						<li>
+							<a href="page/list">الصفحات</a>
+						</li>
+						
+						<li><a href="#">{{BreadTitle}}</a></li>
+						
+
+					</ol>
+					<!-- -->
+
+					<!-- begin switch -->
+					<div ng-switch on="urlparam">
+						<div ng-switch-when="add">
+							<div ng-controller="PageController">
+								<div ng-show="TPLMessage_success">
+
+									<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+										تم إضافة الصفحة بنجاح
+									</div>
+								</div>
+
+								<div ng-show="TPLMessage_ERROR1">
+									<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+										خطأ في إضافة الصفحة...من فضلك حاول في وقت لاحق
+									</div>
+								</div>
+
+								<form role="form" class="font_deafult" style="width: 80%"   name="pageForm" >
+									<div class="form-group">
+										<label for="title">عنوان الصفحة</label>
+										<input required="required" type="text" ng-model="title" class="form-control" id="title" placeholder="  عنوان الصفحة هنا ">
+									</div>
+
+									<div class="form-group">
+										<label for="tinymceModel">محتوي الصفحة</label>
+										<textarea required="required" style="direction: ltr" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="tinymceModel" id="tinymceModel"></textarea>
+										
+    
+
+									</div>
+
+									<div align="center">
+										<button type="button" ng-click="AddPage();" style="width: 300px" class="btn btn-info" ng-disabled="!pageForm.$valid">
+											حفظ البيانات
+										</button>
+									</div>
+								</form>
+							</div>
+
+						</div>
+
+						<div ng-switch-when="edit">
+
+							<div ng-controller="PageController">
+								<div ng-show="TPLMessage_success">
+
+									<div style="direction: rtl" class="alert alert-success fontClassSuccess" role="alert">
+										تم تعديل الصفحة
+									</div>
+								</div>
+
+								<div ng-show="TPLMessage_ERROR1">
+									<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+										خطأ في إضافة الصفحة...من فضلك حاول في وقت لاحق
+									</div>
+								</div>
+
+								<form role="form" class="font_deafult" style="width: 80%"   name="pageForm" >
+									<div class="form-group">
+										<label for="title">عنوان الصفحة</label>
+										<input required="required" type="text" ng-model="title" class="form-control" id="title" placeholder="  عنوان الصفحة هنا ">
+									</div>
+
+									<div class="form-group">
+										<label for="tinymceModel">محتوي الصفحة</label>
+										<textarea required="required" style="direction: ltr" ui-tinymce="tinymceOptions" ng-model="tinymceModel" name="tinymceModel" id="tinymceModel"></textarea>
+										
+    
+
+									</div>
+
+									<div align="center">
+										<button type="button" ng-click="EditPage();" style="width: 300px" class="btn btn-info" ng-disabled="!pageForm.$valid">
+											حفظ البيانات
+										</button>
+									</div>
+								</form>
+							</div>
+
+						</div>
+
+						<div ng-switch-default>
+
+							<div ng-show="TPLMessage_ERROR1">
+								<div style="direction: rtl" class="alert alert-danger fontClassAlert" role="alert">
+									لا توجد صفحات مسجلة
+								</div>
+							</div>
+
+							<table ng-show="table1" class="table table-bordered table-striped font_deafult ">
+
+								<tr align="center" class="font_lastbook2">
+									<td width="1%"><span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="40%"> عنوان الصفحة </td>
+
+									<td width="10%">تعديل</td>
+									<td width="1%">
+									 <input type="checkbox" ng-model="ck" class="selecctall"
+									ng-change="updateSelection(ck)" />
+									 
+									</td>
+
+								</tr>
+
+								<tr align="center" class="font_deafult"   dir-paginate="pages in datagride | itemsPerPage: 20: 'cust'" pagination-id="cust">
+									<td width="1%"><span class="glyphicon glyphicon-th-large"></span></td>
+									<td width="40%"> {{pages.title}} </td>
+
+									<td width="10%"><a ng-href="page/edit/{{pages.ID}}"> <span class="glyphicon glyphicon-pencil"></span></td>
+									<td width="1%">
+						  <input type="checkbox" class="checkbox1" name="c[]" id="px_{{$index}}" value="{{pages.ID}}"  ng-model="op[pages.ID]"   /> 
+
+									</td>
+
+								</tr>
+
+								<footer>
+									<tr>
+										<td colspan="4" align="left">
+										<button ng-click="deletePage();" type="button" style="width: 300px" class="btn btn-danger" >
+											حذف الصفحات المختارة
+										</button></td>
+									</tr>
+								</footer>
+
+							</table>
+
+							<dir-pagination-controls boundary-links="true" pagination-id="cust" template-url="../lib/pagination/dirPagination.tpl.html"></dir-pagination-controls>
+
+						</div>
+
+					</div>
+
+					<!-- end switch -->
+
+				</div>
+
+			</div>
+
+		</div>
+		<!--//center -->
+		<div class="col-xs-6 col-md-2">
+			<!-- //begin -->
+			<div right-tpl></div>
+
+			<!-- //end -->
+
+		</div>
+	</div>
+</div>
+

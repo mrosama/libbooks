@@ -1,0 +1,111 @@
+
+<div class="panel panel-info font_deafult" style="text-align: center">
+  <div class="panel-heading">{{ 'load.Website.MEMBERLOGIN' | translate }} </div>
+  <div class="panel-body">
+  	
+    <div ng-controller="AuthController" >
+    	{{CheckLogin()}}
+    	<div id="form_login" ng-show="form_login">
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">{{ 'load.Website.EMAIL' | translate }} </label>
+    <input type="text" ng-model="userlogin" name="userlogin" class="form-control" id="exampleInputEmail1"  >
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">{{ 'load.Website.PASS' | translate }} </label>
+    <input type="password" ng-model="passlogin" name="passlogin" class="form-control" id="exampleInputPassword1" >
+  </div>
+   
+   
+  <button type="button" ng-click="login()" class="btn btn-default">{{ 'load.Website.SEND' | translate }} </button>
+</form>
+<b class="font_error" ng-show="LoginMSGERR">{{ 'load.Message.LOGINERROR' | translate }} </b>
+</div>
+
+<div id="form_profile" ng-show="form_profile">
+    <table width="100%" class="table table-bordered font_deafult2">
+    <tr><td><a href="#"> {{ 'load.Website.LOGINWELCOME' | translate }} </a></td> </tr>
+    <tr><td style="font-family: Tahoma">{{ProfileName}}</td></tr>
+    <tr><td colspan="2"><a href="register/profile"> {{ 'load.Website.LOGINHOMEPAGE' | translate }}</a></td> </tr>
+    <tr><td colspan="2"><a href="#" ng-click="logout();">{{ 'load.Website.LOGINLOGOUT' | translate }} </a></td> </tr>
+	</table>
+</div>
+
+
+
+  </div>
+</div>
+</div>
+
+ 
+<!--
+<div class="panel panel-info font_deafult" style="text-align: center">
+  <div class="panel-heading">{{ 'load.Website.CART' | translate }}   </div>
+  <div class="panel-body">
+     ss
+  </div>
+</div>
+-->
+<div class="panel panel-info font_deafult" style="text-align: center">
+  <div class="panel-heading">  {{ 'load.Website.POLL' | translate }}   </div>
+  <div class="panel-body">
+      <div ng-controller="PollController">
+      	
+      	<div id="pollform" ng-show="pollform">
+      		<form>
+         	<table width="100%" class="table table-bordered" align="center">
+      		<tr><td align="center" colspan="2">{{pollquestion}}</td></tr>
+      		<tr ng-repeat="poll in pollanswer">
+      			<td align="right">{{poll.answer}} </td> <td align="right" width="1%">
+      			 
+      				<input type="radio"  ng-model="poll.isSelected" name="r1" ng-value="true" >
+      				</td>
+      		</tr>
+      		<tr><td colspan="2">
+      		 
+      			<input type="button" ng-click="addpoll(pollanswer);" class="btn btn-primary" value="{{ 'load.Website.POLL' | translate }}" ></td></tr>
+      		</table>
+      		<input type="hidden"> 
+      		 
+         	</form>
+      	</div>
+      	<div id="pollresult" ng-show="pollresult">
+      			<table cellpadding="0" cellspacing="0" width="100%" class="table table-bordered" align="center">
+      		<tr><td align="center" colspan="2">{{pollquestion}}</td></tr>
+      		<tr ng-repeat="poll in pollanswer">
+      			<td colspan="2">
+               <table width="100%" cellpadding="0" cellspacing="0" class="font_deafult2">
+               	<tr><td align="right"><b style="font-family: Tahoma">{{percents[$index]}}%</b> &nbsp;&nbsp;	{{poll.answer}} </td></tr>
+               		<tr><td><div class="progress">
+                      <div data-percentage="0%" style="width: {{percents[$index]}}%;" class="progress-bar progress-bar-info" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> </td></tr>
+               	</table>   
+      			</td> 
+      			 </tr>
+      		</table>
+       
+      		 
+         	</form>
+      		
+      	</div>
+      	
+      	
+      	
+      {{poll()}}
+      </div>
+      
+      
+  </div>
+</div>
+
+
+
+ 		
+<div class="panel panel-info font_deafult" style="text-align: center">
+  <div class="panel-heading">  {{ 'load.Website.ADV' | translate }}  </div>
+  <div class="panel-body">
+     <div ng-controller="AdvController" ng-bind-html="ADV_LEFT">
+    <div align="center">{{Advert_Left("LEFT")}}</div> 	
+     	</div>
+  </div>
+</div> 	
